@@ -2,6 +2,9 @@ import axios from 'axios';
 import config from '../config';
 
 class AuthService {
+  getUser() {
+    return JSON.parse(localStorage.getItem('user'));
+  }
   login(user) {
     return axios
       .post(config.apiUrl, {
@@ -10,6 +13,7 @@ class AuthService {
       })
       .then(response => {
         console.log(response)
+        response.data.role = 'USER';
         if (response.data.access_token) {
           localStorage.setItem('user', JSON.stringify(response.data));
         }
