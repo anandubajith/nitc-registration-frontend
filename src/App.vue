@@ -1,32 +1,24 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+      <b-navbar  type="is-primary">
+        <template slot="brand">
+            <b-navbar-item tag="router-link" :to="{ path: '/' }">
+              <h3>NIT-C Registration</h3>
+            </b-navbar-item>
+        </template>
+        <template slot="end">
+             <b-navbar-item tag="router-link" :to="{ path: '/home' }">
+                Home
+            </b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ path: '/about' }">
+                About
+            </b-navbar-item>
+        </template>
+    </b-navbar>
     <router-view/>
   </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
