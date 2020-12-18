@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/';
+import config from '../config';
 
-let token = JSON.parse(localStorage.getItem('user')).access_token;
+
+let token = JSON.parse(localStorage.getItem('user')).accessToken;
 
 class DueService {
     getUserDue() {
         return axios
-            .get(API_URL + 'due', { headers: { 'Authorization': `Bearer ${token}` } })
+            .get(config.apiUrl + 'due', { headers: { 'Authorization': `Bearer ${token}` } })
             .then(response => {
-                console.log(response)
                 return response.data;
             });
     }

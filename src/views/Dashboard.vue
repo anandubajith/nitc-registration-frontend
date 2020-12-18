@@ -38,7 +38,7 @@
           </b-message>
         </div>
       </div>
-      <div class="columns" v-if="hostelDue < 0 && libraryDue < 0">
+      <div class="columns" v-if="hostelDue <= 0 && libraryDue <=  0">
         <div class="column">
           <h2 class="is-size-3">You have cleared all dues</h2>
           <h2 class="is-size-4">Proceed to filling application</h2>
@@ -51,13 +51,25 @@
   </section>
 </template>
 <script>
+import dueService from '../services/due.service';
 export default {
   name: "Dashboard",
   data() {
     return {
-      hostelDue: -2999,
-      libraryDue: -999,
+      hostelDue: 0,
+      libraryDue: 0,
     };
   },
+  mounted() {
+    dueService.getUserDue().then(data => {
+      data.forEach(item => {
+        if ( item.type === 'hostel') {
+          this.hostelDue = item.amount;
+        } else {
+          this.libraryDue = item.amount;
+        }
+      })
+    })
+  }
 };
 </script>
