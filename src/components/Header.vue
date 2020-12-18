@@ -36,6 +36,7 @@ export default {
         logout() {
             console.log('logging out');
             authService.logout();
+             this.$store.dispatch('auth/logout');
             this.$router.push("/login")
         }
     }
