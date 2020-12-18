@@ -10,14 +10,15 @@
         </div>
         <div class="columns">
           <div class="column">
-            <b-field label="Roll Number">
-              <b-input></b-input>
+            <!-- {{ application | json}} -->
+            <b-field label="Roll Number" >
+              <b-input v-model="application.owner.username"></b-input>
             </b-field>
-            <b-field label="Name">
-              <b-input></b-input>
+            <b-field label="Name" >
+              <b-input v-model="application.owner.name"></b-input>
             </b-field>
             <b-field label="Department">
-              <b-input></b-input>
+              <b-input  v-model="application.owner.department"></b-input>
             </b-field>
           </div>
           <div class="column">
@@ -25,10 +26,10 @@
               <b-input></b-input>
             </b-field>
             <b-field label="Base Category">
-              <b-input></b-input>
+              <b-input v-model="application.owner.category"></b-input>
             </b-field>
             <b-field label="Application Category">
-              <b-input></b-input>
+              <b-input v-model="application.owner.category"></b-input>
             </b-field>
           </div>
         </div>
@@ -63,22 +64,20 @@
         <div class="columns">
           <div class="column">
             <b-field label="Mode of payment">
-              <b-input></b-input>
+              <b-input v-model="application.payment.modeOfPayment"></b-input>
             </b-field>
             <b-field label="Bank">
-              <b-input></b-input>
+              <b-input v-model="application.payment.bank"></b-input>
             </b-field>
             <b-field label="Transaction Id">
-              <b-input></b-input>
+              <b-input v-model="application.payment.transactionId"></b-input>
             </b-field>
             <b-field label="Amount">
-              <b-input></b-input>
+              <b-input v-model="application.payment.amount"></b-input>
             </b-field>
             <b-field label="Payment Date">
               <b-datepicker
-                v-model="selected"
-                :show-week-number="showWeekNumber"
-                :locale="locale"
+                model="selected"
                 placeholder="Click to select..."
                 icon="calendar-today"
                 trap-focus
@@ -99,3 +98,19 @@
     </div>
   </section>
 </template>
+<script>
+import applicationService from '../services/application.service';
+export default {
+  name: 'Application', 
+  data() {
+    return {
+      application:{}
+    }
+  },
+  mounted() {
+    applicationService.getApplication().then(res => {
+      this.application = {...res};
+    });
+  }
+}
+</script>
