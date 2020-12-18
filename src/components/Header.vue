@@ -7,10 +7,16 @@
     </template>
     <template slot="end">
       <b-navbar-item tag="router-link" :to="{ path: '/home' }">
-        Home
+        Login
       </b-navbar-item>
-      <b-navbar-item tag="router-link" :to="{ path: '/about' }">
-        About
+      <b-navbar-item tag="router-link" :to="{ path: '/dashboard' }">
+        Dashboard
+      </b-navbar-item>
+      <b-navbar-item tag="router-link" :to="{ path: '/application' }">
+        Application
+      </b-navbar-item>
+      <b-navbar-item tag="router-link" :to="{ path: '/profile' }">
+        Profile
       </b-navbar-item>
       <b-navbar-item>
           <b-button type="is-danger" size="is-small" @click="logout">Logout</b-button>
