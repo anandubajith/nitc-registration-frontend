@@ -2,9 +2,10 @@ import axios from 'axios';
 
 import config from '../config';
 
-
-let token = JSON.parse(localStorage.getItem('user')).accessToken;
-
+let token = '';
+if ( localStorage.getItem('user')){
+    token = JSON.parse(localStorage.getItem('user')).accessToken;
+}
 class ApplicationService {
     getApplication() {
         return axios
