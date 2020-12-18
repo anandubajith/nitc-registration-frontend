@@ -1,5 +1,5 @@
 <template>
-  <b-navbar type="is-primary">
+  <b-navbar type="is-primary"  v-if="$route.path != '/'">
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ path: '/' }">
         <h3>NIT-C Registration</h3>

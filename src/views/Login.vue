@@ -1,8 +1,8 @@
 <template>
   <section
-    class="hero"
+    class="hero is-fullheight"
     style="
-      min-height: 98vh;
+      min-height: 100vh;
       background-image: url(https://nitc-hostel-dues.web.app/bg.jpg);
       background-size: cover;
     "
