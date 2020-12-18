@@ -1,7 +1,39 @@
 <template>
-    <section class="section">
-        <div class="container">
-            HI there this is profile
+  <section class="section">
+    <div class="container">
+      <div class="columns box">
+        <div class="column">
+          <b-field label="Contact Number">
+            <b-input></b-input>
+          </b-field>
         </div>
-    </section>
+        <div class="column">
+          <b-field label="Email">
+            <b-input></b-input>
+          </b-field>
+        </div>
+        <div class="column">
+          <b-field label="Choose FA Name">
+            <b-select placeholder="Choose FA Name" expanded>
+              <option value="Test">Test 1</option>
+              <option value="Test">Test 2</option>
+              <option value="Test">Test 3</option>
+            </b-select>
+          </b-field>
+        </div>
+      </div>
+      <div class="columns">
+          <div class="column">
+              change password option
+          </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="xbox">
+            <b-button>Save</b-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
