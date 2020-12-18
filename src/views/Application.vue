@@ -92,9 +92,88 @@
         style="display: flex; justify-content: center; align-items: center"
       >
         <b-button size="is-large" type="is-primary"
-          >Submit Application</b-button
+          >Save</b-button
         >
       </div>
+              <b-collapse class="card" animation="slide" aria-id="contentIdForA11y3">
+            <div
+                slot="trigger" 
+                slot-scope="props"
+                class="card-header"
+                role="button"
+                aria-controls="contentIdForA11y3">
+                <p class="card-header-title">
+                    Document Uploads
+                </p>
+                <a class="card-header-icon">
+                    <b-icon
+                        :icon="props.open ? 'menu-down' : 'menu-up'">
+                    </b-icon>
+                </a>
+            </div>
+            <div class="card-content">
+                <div class="content">
+      <h3>Fee Payment Receipt</h3>
+      <div
+        class="box"
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <b-field class="file is-primary" :class="{'has-name': !!file}">
+          <b-upload v-model="file" class="file-label">
+            <span class="file-cta">
+              <b-icon class="file-icon" icon="upload"></b-icon>
+                <span class="file-label">Click to upload</span>
+            </span>
+            <span class="file-name" v-if="file">
+                {{ file.name }}
+            </span>
+          </b-upload>
+        </b-field>
+      </div>
+      <h3>DSS Fee Payment Entry</h3>
+      <div
+        class="box"
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <b-field class="file is-primary" :class="{'has-name': !!file}">
+          <b-upload v-model="file" class="file-label">
+            <span class="file-cta">
+              <b-icon class="file-icon" icon="upload"></b-icon>
+                <span class="file-label">Click to upload</span>
+            </span>
+            <span class="file-name" v-if="file">
+                {{ file.name }}
+            </span>
+          </b-upload>
+        </b-field>
+      </div>
+      <h3>Other Documents</h3>
+      <div
+        class="box"
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <b-field class="file is-primary" :class="{'has-name': !!file}">
+          <b-upload v-model="file" class="file-label">
+            <span class="file-cta">
+              <b-icon class="file-icon" icon="upload"></b-icon>
+                <span class="file-label">Click to upload</span>
+            </span>
+            <span class="file-name" v-if="file">
+                {{ file.name }}
+            </span>
+          </b-upload>
+        </b-field>
+      </div>
+            <div
+        class="box"
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <b-button size="is-large" type="is-primary"
+          >Submit</b-button
+        >
+      </div>
+                </div>
+            </div></b-collapse>
     </div>
   </section>
 </template>

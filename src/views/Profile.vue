@@ -21,6 +21,14 @@
             </b-select>
           </b-field>
         </div>
+          <div class="columns is-centered">
+            E-Grant:
+            <div class="field">
+            <b-switch v-model="isSwitched">
+                {{ isSwitched }}
+            </b-switch>
+        </div>
+        </div>
       </div>
       <div class="columns">
           <div class="column">
