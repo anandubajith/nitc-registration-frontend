@@ -4,9 +4,10 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-            <form action="" class="box" @submit.prevent="handleLogin">
+            <form action="" class="box has-text-light has-background-dark"  @submit.prevent="handleLogin">
+              <img src="../assets/logo.png" style="max-width:140px;display:block; margin:auto" alt="NIT-C logo">
               <div class="field">
-                <label for="" class="label">Email</label>
+                <label for="" class="label has-text-grey-light">Username</label>
                 <div class="control has-icons-left">
                   <input
                     type="text"
@@ -21,7 +22,7 @@
                 </div>
               </div>
               <div class="field">
-                <label for="" class="label">Password</label>
+                <label for="" class="label has-text-grey-light">Password</label>
                 <div class="control has-icons-left">
                   <input
                     type="password"
@@ -36,7 +37,7 @@
                   </span>
                 </div>
               </div>
-              <div class="field">
+              <div class="field is-flex is-justify-content-center is-align-items-center">
                 <button class="button is-success">Login</button>
               </div>
             </form>
