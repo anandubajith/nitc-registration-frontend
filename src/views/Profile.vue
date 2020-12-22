@@ -2,7 +2,7 @@
   <section class="section">
     <div class="container">
       <div class="box">
-        <div class="columns">
+        <div class="columns ">
           <div class="column">
             <h4 class="is-size-4">Profile</h4>
             <hr />
@@ -20,7 +20,7 @@
             </b-field>
           </div>
         </div>
-        <div class="columns">
+        <div class="columns is-vcentered">
           <div class="column">
             <b-field label="Choose FA Name">
               <b-select placeholder="Choose FA Name" expanded>
