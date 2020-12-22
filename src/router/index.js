@@ -3,8 +3,9 @@ import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Dashboard from '../views/Dashboard.vue'
-import Application from '../views/Application.vue'
+import ViewApplication from '../views/ViewApplication.vue'
 import Profile from '../views/Profile.vue'
+import DueUpload from '../views/DueUpload.vue'
 import store from '@/store';
 // import authService from '../services/auth.service'
 import { ToastProgrammatic as Toast } from 'buefy'
@@ -27,8 +28,13 @@ const routes = [
     meta: { authorize: ['user'] }
   },
   {
+    path: '/due',
+    component: DueUpload,
+    // meta: { authorize: ['user'] }
+  },
+  {
     path: '/application',
-    component: Application,
+    component: ViewApplication,
     meta: { authorize: ['user', 'sac', 'faculty', 'academic'] }
   },
   { path: '*', redirect: '/' }
