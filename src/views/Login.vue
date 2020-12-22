@@ -35,14 +35,13 @@
               <div class="field">
                 <label for="" class="label has-text-grey-light">Password</label>
                 <div class="control has-icons-left">
-                  <input
+                  <b-input
                     type="password"
-                    value="password"
-                    placeholder="*******"
+                    placeholder="********"
                     v-model="password"
-                    class="input"
-                    required
-                  />
+                    password-reveal
+                  >
+                  </b-input>
                   <span class="icon is-small is-left">
                     <i class="fa fa-lock"></i>
                   </span>
