@@ -11,7 +11,7 @@
                 <div class="control has-icons-left">
                   <input
                     type="text"
-                    placeholder="e.g. bobsmith@gmail.com"
+                    placeholder="e.g. B180288CS"
                     v-model="username"
                     class="input"
                     required
@@ -56,8 +56,8 @@ export default {
   name: "login",
   data() {
     return {
-      username: "",
-      password: "",
+      username: "anandu",
+      password: "password",
     };
   },
   methods: {
