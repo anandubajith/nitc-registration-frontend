@@ -2,7 +2,7 @@
   <section class="section">
     <div class="container">
       <div class="box">
-        <div class="columns ">
+        <div class="columns">
           <div class="column">
             <h4 class="is-size-4">Profile</h4>
             <hr />
@@ -37,14 +37,16 @@
           </div>
         </div>
         <div class="columns">
-          <div class="column is-flex is-justify-content-center is-align-items-center">
+          <div
+            class="column is-flex is-justify-content-center is-align-items-center"
+          >
             <div class="xbox">
               <b-button type="is-primary">Save</b-button>
             </div>
           </div>
         </div>
-        <div class="columns ">
-          <div class="column ">
+        <div class="columns">
+          <div class="column">
             <h4 class="is-size-5">Change password</h4>
             <hr />
           </div>
@@ -67,7 +69,9 @@
           </div>
         </div>
         <div class="columns">
-          <div class="column  is-flex is-justify-content-center is-align-items-center">
+          <div
+            class="column is-flex is-justify-content-center is-align-items-center"
+          >
             <b-button type="is-primary">Update password</b-button>
           </div>
         </div>
