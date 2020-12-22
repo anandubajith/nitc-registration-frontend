@@ -1,7 +1,7 @@
 <template>
   <b-navbar type="is-dark" :fixed-top="true" v-if="$route.path != '/'">
     <template slot="brand">
-      <b-navbar-item tag="router-link" :to="{ path: '/dashboard' }">
+      <b-navbar-item xtag="router-link" to="{ path: '/dashboard' }">
         <img src="../assets/logo.png" style="margin-right: 10px" />
         <h3>NIT-C Registration</h3>
       </b-navbar-item>
