@@ -1,18 +1,17 @@
 import axios from 'axios';
-
 import config from '../config';
 
-let token = '';
-if ( localStorage.getItem('user')){
-    token = JSON.parse(localStorage.getItem('user')).accessToken;
-}
 class DueService {
-    getUserDue() {
+    getDues(token) {
         return axios
             .get(config.apiUrl + 'due', { headers: { 'Authorization': `Bearer ${token}` } })
             .then(response => {
                 return response.data;
             });
+    }
+
+    uploadDue(token, data) {
+        console.log('todo', data, token);
     }
   
 }

@@ -5,7 +5,9 @@ import Login from '../views/Login.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Application from '../views/Application.vue'
 import Profile from '../views/Profile.vue'
+import store from '@/store';
 // import authService from '../services/auth.service'
+import { ToastProgrammatic as Toast } from 'buefy'
 
 Vue.use(VueRouter)
 
@@ -17,15 +19,17 @@ const routes = [
   {
     path: '/profile',
     component: Profile,
-    meta: { authorize: ['USER'] } 
+    meta: { authorize: ['user'] }
   },
   {
     path: '/dashboard',
     component: Dashboard,
+    meta: { authorize: ['user'] }
   },
   {
-    path: '/application' ,
-    component: Application
+    path: '/application',
+    component: Application,
+    meta: { authorize: ['user', 'sac', 'faculty', 'academic'] }
   },
   { path: '*', redirect: '/' }
 ]
@@ -36,25 +40,43 @@ const router = new VueRouter({
   routes
 });
 
-// router.beforeEach((to, from, next) => {
-//   // redirect to login page if not logged in and trying to access a restricted page
-//   const { authorize } = to.meta;
-//   const currentUser = authService.getUser();
-//   if (authorize) {
-//       if (!currentUser) {
-//           // not logged in so redirect to login page with the return url
-//           return next({ path: '/login', query: { returnUrl: to.path } });
-//       }
+router.beforeEach((to, from, next) => {
+  //   // redirect to login page if not logged in and trying to access a restricted page
+  //   const currentUser = authService.getUser();
+  //   if (authorize) {
+  //       if (!currentUser) {
+  //           // not logged in so redirect to login page with the return url
+  //           return next({ path: '/login', query: { returnUrl: to.path } });
+  //       }
 
-//       // check if route is restricted by role
-//       if (authorize.length && !authorize.includes(currentUser.role)) {
-//           // role not authorised so redirect to home page
-//           return next({ path: '/' });
-//       }
-//   }
+  //       // check if route is restricted by role
+  //       if (authorize.length && !authorize.includes(currentUser.role)) {
+  //           // role not authorised so redirect to home page
+  //           return next(p{ path: '/' });
+  //       }
 
-//   next();
-// })
+  //   }
+
+
+  // console.log("STORE", store.getters)
+  // console.log("role", store.getters.role);
+
+  const { authorize } = to.meta;
+  if (authorize && authorize.length) {
+    if (store.getters.token === null) {
+      // redirect to login
+      Toast.open('Not logged in block');
+      return next({ path: '/login', query: { returnUrl: to.path } });
+    } else if (!authorize.includes(store.getters.role)) {
+      // redirect to login
+      Toast.open(' no role block');
+      return next({ path: '/' });
+    }
+
+  }
+
+  next();
+})
 
 
 

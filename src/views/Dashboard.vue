@@ -51,7 +51,6 @@
   </section>
 </template>
 <script>
-import dueService from '../services/due.service';
 export default {
   name: "Dashboard",
   data() {
@@ -61,15 +60,15 @@ export default {
     };
   },
   mounted() {
-    dueService.getUserDue().then(data => {
-      data.forEach(item => {
-        if ( item.type === 'hostel') {
-          this.hostelDue = item.amount;
-        } else {
-          this.libraryDue = item.amount;
-        }
-      })
-    })
+    // dueService.getUserDue().then(data => {
+    //   data.forEach(item => {
+    //     if ( item.type === 'hostel') {
+    //       this.hostelDue = item.amount;
+    //     } else {
+    //       this.libraryDue = item.amount;
+    //     }
+    //   })
+    // })
   }
 };
 </script>

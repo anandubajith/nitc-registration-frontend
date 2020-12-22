@@ -1,12 +1,5 @@
 <template>
-  <section
-    class="hero is-fullheight"
-    style="
-      min-height: 100vh;
-      background-image: url(https://nitc-hostel-dues.web.app/bg.jpg);
-      background-size: cover;
-    "
-  >
+  <section class="hero is-fullheight bg" style="">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered">
@@ -18,7 +11,7 @@
                   <input
                     type="text"
                     placeholder="e.g. bobsmith@gmail.com"
-                    v-model="user.username"
+                    v-model="username"
                     class="input"
                     required
                   />
@@ -34,7 +27,7 @@
                     type="password"
                     value="password"
                     placeholder="*******"
-                    v-model="user.password"
+                    v-model="password"
                     class="input"
                     required
                   />
@@ -57,49 +50,32 @@
 
 
 <script>
-import User from "../models/user";
+import { mapActions } from "vuex";
 export default {
-  name: "Login",
+  name: "login",
   data() {
     return {
-      user: new User("anandu", "password"),
-      loading: false,
-      message: "",
+      username: "",
+      password: "",
     };
   },
-  computed: {
-    loggedIn() {
-      return this.$store.state.auth.status.loggedIn;
-    },
-  },
-  created() {
-    if (this.loggedIn) {
-      this.$router.push("/dashboard");
-    }
-  },
   methods: {
-    handleLogin() {
-      
-      this.loading = true;
-
-      if (this.user.username && this.user.password) {
-        this.$store.dispatch("auth/login", this.user).then(
-          () => {
-            this.$router.push("/dashboard");
-          },
-          (error) => {
-            this.loading = false;
-            console.log(error);
-            this.message =
-              (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-              error.message ||
-              error.toString();
-          }
-        );
-      }
+    ...mapActions(["signInAction"]),
+    async handleLogin() {
+      const user = {
+        username: this.username,
+        password: this.password,
+      };
+      await this.signInAction(user);
+      this.$router.replace("dashboard");
     },
   },
 };
 </script>
+<style>
+.bg {
+  min-height: 100vh;
+  background-image: url('https://nitc-hostel-dues.web.app/bg.jpg');
+  background-size: cover;
+}
+</style>
