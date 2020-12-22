@@ -2,18 +2,41 @@
   <b-navbar type="is-dark" :fixed-top="true" v-if="$route.path != '/'">
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ path: '/dashboard' }">
-        <img src="../assets/logo.png" style="margin-right:10px" />
+        <img src="../assets/logo.png" style="margin-right: 10px" />
         <h3>NIT-C Registration</h3>
       </b-navbar-item>
     </template>
     <template slot="start">
-      <b-navbar-item tag="router-link" :to="{ path: '/dashboard' }">
+      <b-navbar-item
+        tag="router-link"
+        :to="{ path: '/dashboard' }"
+        v-if="user.user.role === 'user'"
+      >
         Dashboard
       </b-navbar-item>
-      <b-navbar-item tag="router-link" :to="{ path: '/application' }">
+      <b-navbar-item
+        tag="router-link"
+        :to="{ path: '/applications/list' }"
+        v-if="
+          user.user.role === 'fa' ||
+          user.user.role === 'sac_admin' ||
+          user.user.role === 'academic_admin'
+        "
+      >
+        Dashboard
+      </b-navbar-item>
+      <b-navbar-item
+        tag="router-link"
+        :to="{ path: '/application' }"
+        v-if="user.user.role === 'user'"
+      >
         Application
       </b-navbar-item>
-      <b-navbar-item tag="router-link" :to="{ path: '/profile' }">
+      <b-navbar-item
+        tag="router-link"
+        :to="{ path: '/profile' }"
+        v-if="user.user.role === 'user' || user.user.role === 'fa'"
+      >
         Profile
       </b-navbar-item>
     </template>
@@ -27,10 +50,10 @@
   </b-navbar>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Header",
-  computed: {},
+  computed: { ...mapGetters(["user"]) },
   methods: {
     ...mapActions(["signOutAction"]),
     async logout() {

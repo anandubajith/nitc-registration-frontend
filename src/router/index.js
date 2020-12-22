@@ -21,7 +21,7 @@ const routes = [
   {
     path: '/profile',
     component: Profile,
-    meta: { authorize: ['user'] }
+    meta: { authorize: ['user', 'fa'] }
   },
   {
     path: '/dashboard',
