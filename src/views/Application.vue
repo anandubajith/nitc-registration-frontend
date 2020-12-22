@@ -11,14 +11,14 @@
         <div class="columns">
           <div class="column">
             <!-- {{ application | json}} -->
-            <b-field label="Roll Number" >
-              <b-input v-model="application.owner.username"></b-input>
+            <b-field label="Roll Number">
+              <b-input xv-model="application.owner.username"></b-input>
             </b-field>
-            <b-field label="Name" >
-              <b-input v-model="application.owner.name"></b-input>
+            <b-field label="Name">
+              <b-input xv-model="application.owner.name"></b-input>
             </b-field>
             <b-field label="Department">
-              <b-input  v-model="application.owner.department"></b-input>
+              <b-input xv-model="application.owner.department"></b-input>
             </b-field>
           </div>
           <div class="column">
@@ -26,10 +26,10 @@
               <b-input></b-input>
             </b-field>
             <b-field label="Base Category">
-              <b-input v-model="application.owner.category"></b-input>
+              <b-input xv-model="application.owner.category"></b-input>
             </b-field>
             <b-field label="Application Category">
-              <b-input v-model="application.owner.category"></b-input>
+              <b-input xv-model="application.owner.category"></b-input>
             </b-field>
           </div>
         </div>
@@ -64,16 +64,16 @@
         <div class="columns">
           <div class="column">
             <b-field label="Mode of payment">
-              <b-input v-model="application.payment.modeOfPayment"></b-input>
+              <b-input xv-model="application.payment.modeOfPayment"></b-input>
             </b-field>
             <b-field label="Bank">
-              <b-input v-model="application.payment.bank"></b-input>
+              <b-input xv-model="application.payment.bank"></b-input>
             </b-field>
             <b-field label="Transaction Id">
-              <b-input v-model="application.payment.transactionId"></b-input>
+              <b-input xv-model="application.payment.transactionId"></b-input>
             </b-field>
             <b-field label="Amount">
-              <b-input v-model="application.payment.amount"></b-input>
+              <b-input xv-model="application.payment.amount"></b-input>
             </b-field>
             <b-field label="Payment Date">
               <b-datepicker
@@ -91,105 +91,110 @@
         class="box"
         style="display: flex; justify-content: center; align-items: center"
       >
-        <b-button size="is-large" type="is-primary"
-          >Save</b-button
-        >
+        <b-button size="is-large" type="is-primary">Save</b-button>
       </div>
-              <b-collapse class="card" animation="slide" aria-id="contentIdForA11y3">
+      <b-collapse class="card" animation="slide" aria-id="contentIdForA11y3">
+        <div
+          slot="trigger"
+          slot-scope="props"
+          class="card-header"
+          role="button"
+          aria-controls="contentIdForA11y3"
+        >
+          <p class="card-header-title">Document Uploads</p>
+          <a class="card-header-icon">
+            <b-icon :icon="props.open ? 'menu-down' : 'menu-up'"> </b-icon>
+          </a>
+        </div>
+        <div class="card-content">
+          <div class="content">
+            <h3>Fee Payment Receipt</h3>
             <div
-                slot="trigger" 
-                slot-scope="props"
-                class="card-header"
-                role="button"
-                aria-controls="contentIdForA11y3">
-                <p class="card-header-title">
-                    Document Uploads
-                </p>
-                <a class="card-header-icon">
-                    <b-icon
-                        :icon="props.open ? 'menu-down' : 'menu-up'">
-                    </b-icon>
-                </a>
+              class="box"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <b-field class="file is-primary" :class="{ 'has-name': !!file }">
+                <b-upload xv-model="file" class="file-label">
+                  <span class="file-cta">
+                    <b-icon class="file-icon" icon="upload"></b-icon>
+                    <span class="file-label">Click to upload</span>
+                  </span>
+                  <span class="file-name" v-if="file">
+                    {{ file.name }}
+                  </span>
+                </b-upload>
+              </b-field>
             </div>
-            <div class="card-content">
-                <div class="content">
-      <h3>Fee Payment Receipt</h3>
-      <div
-        class="box"
-        style="display: flex; justify-content: center; align-items: center"
-      >
-        <b-field class="file is-primary" :class="{'has-name': !!file}">
-          <b-upload v-model="file" class="file-label">
-            <span class="file-cta">
-              <b-icon class="file-icon" icon="upload"></b-icon>
-                <span class="file-label">Click to upload</span>
-            </span>
-            <span class="file-name" v-if="file">
-                {{ file.name }}
-            </span>
-          </b-upload>
-        </b-field>
-      </div>
-      <h3>DSS Fee Payment Entry</h3>
-      <div
-        class="box"
-        style="display: flex; justify-content: center; align-items: center"
-      >
-        <b-field class="file is-primary" :class="{'has-name': !!file}">
-          <b-upload v-model="file" class="file-label">
-            <span class="file-cta">
-              <b-icon class="file-icon" icon="upload"></b-icon>
-                <span class="file-label">Click to upload</span>
-            </span>
-            <span class="file-name" v-if="file">
-                {{ file.name }}
-            </span>
-          </b-upload>
-        </b-field>
-      </div>
-      <h3>Other Documents</h3>
-      <div
-        class="box"
-        style="display: flex; justify-content: center; align-items: center"
-      >
-        <b-field class="file is-primary" :class="{'has-name': !!file}">
-          <b-upload v-model="file" class="file-label">
-            <span class="file-cta">
-              <b-icon class="file-icon" icon="upload"></b-icon>
-                <span class="file-label">Click to upload</span>
-            </span>
-            <span class="file-name" v-if="file">
-                {{ file.name }}
-            </span>
-          </b-upload>
-        </b-field>
-      </div>
+            <h3>DSS Fee Payment Entry</h3>
             <div
-        class="box"
-        style="display: flex; justify-content: center; align-items: center"
+              class="box"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <b-field class="file is-primary" :class="{ 'has-name': !!file }">
+                <b-upload xv-model="file" class="file-label">
+                  <span class="file-cta">
+                    <b-icon class="file-icon" icon="upload"></b-icon>
+                    <span class="file-label">Click to upload</span>
+                  </span>
+                  <span class="file-name" v-if="file">
+                    {{ file.name }}
+                  </span>
+                </b-upload>
+              </b-field>
+            </div>
+            <h3>Other Documents</h3>
+            <div
+              class="box"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <b-field class="file is-primary" :class="{ 'has-name': !!file }">
+                <b-upload xv-model="file" class="file-label">
+                  <span class="file-cta">
+                    <b-icon class="file-icon" icon="upload"></b-icon>
+                    <span class="file-label">Click to upload</span>
+                  </span>
+                  <span class="file-name" v-if="file">
+                    {{ file.name }}
+                  </span>
+                </b-upload>
+              </b-field>
+            </div>
+            <div
+              class="box"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <b-button size="is-large" type="is-primary">Submit</b-button>
+            </div>
+          </div>
+        </div></b-collapse
       >
-        <b-button size="is-large" type="is-primary"
-          >Submit</b-button
-        >
-      </div>
-                </div>
-            </div></b-collapse>
     </div>
   </section>
 </template>
 <script>
-import applicationService from '../services/application.service';
 export default {
-  name: 'Application', 
+  name: "Application",
   data() {
     return {
-      application:{}
-    }
+      application: {},
+    };
   },
-  mounted() {
-    applicationService.getApplication().then(res => {
-      this.application = {...res};
-    });
-  }
-}
+  mounted() {},
+};
 </script>

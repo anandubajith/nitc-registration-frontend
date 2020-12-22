@@ -23,7 +23,6 @@ const actions = {
   async signInAction({ commit }, payload) {
     try {
       commit('setLoading', true);
-      // await auth.signInWithEmailAndPassword(payload.email, payload.password);
       const {data} = await authService.login(payload.username, payload.password);
       commit('setUser', data);
       Toast.open({

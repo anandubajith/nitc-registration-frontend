@@ -41,23 +41,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  //   // redirect to login page if not logged in and trying to access a restricted page
-  //   const currentUser = authService.getUser();
-  //   if (authorize) {
-  //       if (!currentUser) {
-  //           // not logged in so redirect to login page with the return url
-  //           return next({ path: '/login', query: { returnUrl: to.path } });
-  //       }
-
-  //       // check if route is restricted by role
-  //       if (authorize.length && !authorize.includes(currentUser.role)) {
-  //           // role not authorised so redirect to home page
-  //           return next(p{ path: '/' });
-  //       }
-
-  //   }
-
-
+ 
   // console.log("STORE", store.getters)
   // console.log("role", store.getters.role);
 
@@ -65,11 +49,17 @@ router.beforeEach((to, from, next) => {
   if (authorize && authorize.length) {
     if (store.getters.token === null) {
       // redirect to login
-      Toast.open('Not logged in block');
+      Toast.open({
+        message: 'User not logged in',
+        type: 'is-danger'
+      });
       return next({ path: '/login', query: { returnUrl: to.path } });
     } else if (!authorize.includes(store.getters.role)) {
       // redirect to login
-      Toast.open(' no role block');
+      Toast.open({
+        message: 'Insufficuent permissions',
+        type: 'is-danger'
+      });
       return next({ path: '/' });
     }
 
