@@ -37,13 +37,38 @@
           </div>
         </div>
         <div class="columns">
-          <div class="column">change password option</div>
+          <div class="column is-flex is-justify-content-center is-align-items-center">
+            <div class="xbox">
+              <b-button type="is-primary">Save</b-button>
+            </div>
+          </div>
+        </div>
+        <div class="columns ">
+          <div class="column ">
+            <h4 class="is-size-5">Change password</h4>
+            <hr />
+          </div>
         </div>
         <div class="columns">
           <div class="column">
-            <div class="xbox">
-              <b-button>Save</b-button>
-            </div>
+            <b-field label="New password">
+              <b-input></b-input>
+            </b-field>
+          </div>
+          <div class="column">
+            <b-field label="Confirm password">
+              <b-input></b-input>
+            </b-field>
+          </div>
+          <div class="column">
+            <b-field label="Current password">
+              <b-input></b-input>
+            </b-field>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column  is-flex is-justify-content-center is-align-items-center">
+            <b-button type="is-primary">Update password</b-button>
           </div>
         </div>
       </div>
