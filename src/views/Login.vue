@@ -89,7 +89,7 @@ export default {
 <style>
 .bg {
   min-height: 100vh;
-  background-image: url("https://nitc-hostel-dues.web.app/bg.jpg");
+  background-image: url("../assets/bg.jpg");
   background-size: cover;
 }
 </style>
