@@ -23,11 +23,14 @@
         <div class="columns is-vcentered">
           <div class="column">
             <b-field label="Choose FA Name">
-              <b-select placeholder="Choose FA Name" expanded>
-                <option value="Test">Test 1</option>
-                <option value="Test">Test 2</option>
-                <option value="Test">Test 3</option>
-              </b-select>
+              <b-autocomplete
+                v-model="name"
+                :data="filteredDataArray"
+                placeholder="Enter FA name"
+                @select="(option) => (selected = option)"
+              >
+                <template slot="empty">No results found</template>
+              </b-autocomplete>
             </b-field>
           </div>
           <div class="column">
@@ -82,5 +85,28 @@
 <script>
 export default {
   name: "Profile",
+  data() {
+    return {
+      data: [
+        'PARK',
+        'Jane',
+        'Jone',
+        'Leo',
+        'Tove'
+      ],
+      name: '',
+      selected:null
+    }
+  },
+  computed: {
+            filteredDataArray() {
+                return this.data.filter((option) => {
+                    return option
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(this.name.toLowerCase()) >= 0
+                })
+            }
+        }
 };
 </script>
