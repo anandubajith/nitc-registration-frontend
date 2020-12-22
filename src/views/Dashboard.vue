@@ -2,9 +2,9 @@
   <section class="section">
     <div class="container">
 
-      <h1 class="is-size-3">
+      <!-- <h1 class="is-size-3">
         Show the Dues, The applicationStatus, View Application Link, Print Application , Edit application Link
-      </h1>
+      </h1> -->
       <div class="columns" v-if="hostelDue > 0 && libraryDue > 0">
         <div class="column">
           <b-message
