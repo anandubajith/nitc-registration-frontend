@@ -6,6 +6,7 @@
           <div class="column is-5-tablet is-4-desktop is-3-widescreen">
             <form action="" class="box has-text-light has-background-dark"  @submit.prevent="handleLogin">
               <img src="../assets/logo.png" style="max-width:140px;display:block; margin:auto" alt="NIT-C logo">
+              <h3 class="is-size-5 has-text-weight-medium has-text-centered">NIT-C Registration</h3>
               <div class="field">
                 <label for="" class="label has-text-grey-light">Username</label>
                 <div class="control has-icons-left">
