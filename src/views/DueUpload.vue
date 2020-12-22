@@ -33,7 +33,7 @@
             <hr />
             <form action="">
               <b-field>
-                <b-upload v-model="dropFiles" multiple drag-drop expanded>
+                <b-upload vx-model="dropFiles" multiple drag-drop expanded>
                   <section class="section">
                     <div class="content has-text-centered">
                       <p>

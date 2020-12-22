@@ -63,7 +63,7 @@
 
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "login",
   data() {
@@ -71,6 +71,9 @@ export default {
       username: "anandu",
       password: "password",
     };
+  },
+  computed: {
+    ...mapGetters(["user"]),
   },
   methods: {
     ...mapActions(["signInAction"]),
@@ -80,7 +83,18 @@ export default {
         password: this.password,
       };
       await this.signInAction(user);
-      this.$router.replace("dashboard");
+      const { role } = this.user.user;
+      if (role == "user") {
+        this.$router.replace("dashboard");
+      } else if (role == "library_admin" || role === "hostel_admin") {
+        this.$router.replace("due");
+      } else if (
+        role === "fa" ||
+        role === "sac_admin" ||
+        role === "academic_admin"
+      ) {
+        this.$router.replace("applications/list");
+      }
     },
   },
 };
