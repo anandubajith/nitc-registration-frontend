@@ -55,6 +55,7 @@
   </section>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
   name: "Dashboard",
   data() {
@@ -63,7 +64,14 @@ export default {
       libraryDue: 0,
     };
   },
+  computed: {
+    ...mapGetters(['dues'])
+  },
+  methods: {
+    ...mapActions(['fetchDueAction'])
+  },
   mounted() {
+    this.fetchDueAction();
     // dueService.getUserDue().then(data => {
     //   data.forEach(item => {
     //     if ( item.type === 'hostel') {
