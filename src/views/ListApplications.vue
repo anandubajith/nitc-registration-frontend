@@ -59,7 +59,7 @@ export default {
         return [];
       }
       return this.applications.map(item => {
-        return { id: item.id, name: item.name, roll_number: item.owner.username, date: item.submission_date}
+        return { id: item.id, name: item.owner.name, roll_number: item.owner.username, date: item.submission_date}
       })
     }
   },
