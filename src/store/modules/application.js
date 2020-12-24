@@ -1,4 +1,5 @@
 import applicationService from '../../services/application.service';
+import { ToastProgrammatic as Toast } from 'buefy';
 
 const state = {
     application: null,
@@ -14,16 +15,32 @@ const getters = {
 }
 const actions = {
     async fetchUserApplicationAction({ commit, getters }) {
-        applicationService.getApplication(getters.token).then(application => {
+        try {
+            commit('setLoading', true);
+            const application = await applicationService.getApplication(getters.token);
             commit('setApplication', application);
-        });
+        } catch (e) {
+            Toast.open({
+                message: `Error: ${e.message}`,
+                type: 'is-danger'
+            })
+        } finally {
+            commit('setLoading', false);
+        }
     },
     async fetchApplicationsAction({ commit, getters }) {
-        // fetch application
-        applicationService.listApplications(getters.token).then(applications => {
+        try {
+            commit('setLoading', true);
+            const applications = await applicationService.listApplications(getters.token);
             commit('setApplications', applications);
-            console.log(applications)
-        });
+        } catch (e) {
+            Toast.open({
+                message: `Error: ${e.message}`,
+                type: 'is-danger'
+            })
+        } finally {
+            commit('setLoading', false);
+        }
     },
     // async updateApplicatoin({ commit, getters }, payload) {
 

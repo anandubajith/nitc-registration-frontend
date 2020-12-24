@@ -1,4 +1,6 @@
 import dueService from '../../services/due.service';
+import { ToastProgrammatic as Toast } from 'buefy';
+
 const state = {
     dues: null,
 }
@@ -8,10 +10,19 @@ const getters = {
     }
 }
 const actions = {
-    fetchDueAction({ commit, getters }) {
-        dueService.getDues(getters.token).then(dues => {
+    async fetchDueAction({ commit, getters }) {
+        try {
+            commit('setLoading', true);
+            const dues = await dueService.getDues(getters.token);
             commit('setDues', dues);
-        });
+        } catch (e) {
+            Toast.open({
+                message: `Error: ${e.message}`,
+                type: 'is-danger'
+            })
+        } finally {
+            commit('setLoading', false);
+        }
     }
 }
 const mutations = {
