@@ -3,7 +3,7 @@
     <div class="container">
       <div class="columns">
         <div class="column">
-          <h4 class="title">Upload dues: Library</h4>
+          <h4 class="title">{{ heading }}</h4>
           <hr />
         </div>
       </div>
@@ -56,5 +56,20 @@
     </div>
   </section>
 </template>
+<script>
+import { mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters(["user"]),
+    heading() {
+      if (this.user == null) return "Upload dues";
+      if (this.user.user.role === "hostel_admin") return "Upload dues: Hostel";
+      if (this.user.user.role === "library_admin")
+        return "Upload dues: Library";
+      return '';
+    },
+  },
+};
+</script>
 <style scoped>
 </style>
