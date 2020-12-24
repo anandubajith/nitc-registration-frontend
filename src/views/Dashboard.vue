@@ -1,61 +1,23 @@
 <template>
   <section class="section">
     <div class="container">
-
-      <!-- <h1 class="is-size-3">
-        Show the Dues, The applicationStatus, View Application Link, Print Application , Edit application Link
-      </h1> -->
-      <div class="columns" v-if="hostelDue > 0 && libraryDue > 0">
+      <div class="columns">
         <div class="column">
-          <b-message
-            title="Pending dues"
-            type="is-warning"
-            aria-close-label="Close message"
-          >
-            <div class="columns">
-              <div class="column">
-                You have pending dues, clear them to submit application
-              </div>
-            </div>
-            <div class="columns">
-              <div
-                class="column"
-                style="
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                "
-              >
-                <h4 class="is-size-3">Hostel Dues: ₹{{ hostelDue }}</h4>
-              </div>
-              <div
-                class="column"
-                style="
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                "
-              >
-                <h4 class="is-size-3">Library Dues: ₹{{ libraryDue }}</h4>
-              </div>
-            </div>
-          </b-message>
+          <ApplicationStatus  :hasSubmittedApplication="true"/>
         </div>
       </div>
-      <div class="columns" v-if="hostelDue <= 0 && libraryDue <=  0">
+      <div class="columns">
         <div class="column">
-          <h2 class="is-size-3">You have cleared all dues</h2>
-          <h2 class="is-size-4">Proceed to filling application</h2>
-          <b-button type="is-primary" tag="router-link" to="/application"
-            >Edit Application</b-button
-          >
+          <Due :hostelDue="123" :libraryDue="100" />
         </div>
       </div>
     </div>
   </section>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from "vuex";
+import Due from "../components/Due.vue";
+import ApplicationStatus from "../components/ApplicationStatus.vue";
 export default {
   name: "Dashboard",
   data() {
@@ -64,11 +26,15 @@ export default {
       libraryDue: 0,
     };
   },
+  components: {
+    Due,
+    ApplicationStatus,
+  },
   computed: {
-    ...mapGetters(['dues'])
+    ...mapGetters(["dues"]),
   },
   methods: {
-    ...mapActions(['fetchDueAction'])
+    ...mapActions(["fetchDueAction"]),
   },
   mounted() {
     this.fetchDueAction();
@@ -81,6 +47,6 @@ export default {
     //     }
     //   })
     // })
-  }
+  },
 };
 </script>
