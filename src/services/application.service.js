@@ -23,6 +23,7 @@ class ApplicationService {
         return axios
             .get(config.apiUrl + 'application/list', { headers: { 'Authorization': `Bearer ${token}` } })
             .then(response => {
+                console.log(response.data);
                 return response.data;
             });
     }

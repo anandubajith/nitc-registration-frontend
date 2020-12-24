@@ -9,7 +9,7 @@
       </div>
       <div class="columns">
         <div class="column">
-          <b-table :data="data" :columns="columns" :debounce-search="500">
+          <b-table :data="tableData" :columns="columns" :debounce-search="500">
           </b-table>
         </div>
       </div>
@@ -17,6 +17,7 @@
   </section>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -49,27 +50,24 @@ export default {
           sortable: true,
         },
       ],
-      data: [
-        {
-          id: 1,
-          name: "Anandu B Ajith",
-          roll_number: "B180288CS",
-          date: "25/12/2020",
-        },
-         {
-          id: 123,
-          name: "John Doe",
-          roll_number: "B200288CS",
-          date: "22/12/2020",
-        },
-        {
-          id: 33,
-          name: "Test Doe",
-          roll_number: "B170288CS",
-          date: "19/12/2020",
-        },
-      ],
     };
   },
+  computed: {
+    ...mapGetters(['applications']),
+    tableData() {
+      if ( this.applications == null ) {
+        return [];
+      }
+      return this.applications.map(item => {
+        return { id: item.id, name: item.name, roll_number: item.owner.username, date: item.submission_date}
+      })
+    }
+  },
+  methods: {
+    ...mapActions(['fetchApplicationsAction'])
+  },
+  mounted() {
+    this.fetchApplicationsAction();
+  }
 };
 </script>

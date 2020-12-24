@@ -18,9 +18,13 @@ const actions = {
             commit('setApplication', application);
         });
     },
-    // async fetchApplicationsAction({ commit, getters }) {
-    //     // fetch application
-    // },
+    async fetchApplicationsAction({ commit, getters }) {
+        // fetch application
+        applicationService.listApplications(getters.token).then(applications => {
+            commit('setApplications', applications);
+            console.log(applications)
+        });
+    },
     // async updateApplicatoin({ commit, getters }, payload) {
 
     // },
