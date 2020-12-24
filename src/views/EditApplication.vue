@@ -116,7 +116,7 @@
             <div class="columns">
               <div class="column">
                 <b-field label="Fee payment receipt">
-                  <b-upload  multiple drag-drop>
+                  <b-upload multiple drag-drop>
                     <section class="section">
                       <div class="content has-text-centered">
                         <p>
@@ -129,8 +129,8 @@
                 </b-field>
               </div>
               <div class="column">
-                  <b-field label="DSS Fee payment entry">
-                  <b-upload  multiple drag-drop>
+                <b-field label="DSS Fee payment entry">
+                  <b-upload multiple drag-drop>
                     <section class="section">
                       <div class="content has-text-centered">
                         <p>
@@ -142,9 +142,9 @@
                   </b-upload>
                 </b-field>
               </div>
-                    <div class="column">
-                  <b-field label="Other documents">
-                  <b-upload  multiple drag-drop>
+              <div class="column">
+                <b-field label="Other documents">
+                  <b-upload multiple drag-drop>
                     <section class="section">
                       <div class="content has-text-centered">
                         <p>
@@ -188,7 +188,8 @@ export default {
 };
 </script>
 <style>
-.upload-draggable.is-primary,.upload.control {
-    width:100%;
+.upload-draggable.is-primary,
+.upload.control {
+  width: 100%;
 }
 </style>
