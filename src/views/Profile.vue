@@ -8,43 +8,68 @@
             <hr />
           </div>
         </div>
-        <div class="columns">
-          <div class="column">
-            <b-field label="Contact Number">
-              <b-input></b-input>
-            </b-field>
+        <div v-if="user.user.role == 'fa'">
+          <div class="columns">
+            <div class="column">
+              <b-field label="Name">
+                <b-input></b-input>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field label="Contact Number">
+                <b-input></b-input>
+              </b-field>
+            </div>
           </div>
-          <div class="column">
-            <b-field label="Email">
-              <b-input></b-input>
-            </b-field>
-          </div>
-        </div>
-        <div class="columns is-vcentered">
-          <div class="column">
-            <b-field label="Choose FA Name">
-              <b-autocomplete
-                v-model="name"
-                :data="filteredDataArray"
-                placeholder="Enter FA name"
-                @select="(option) => (selected = option)"
-              >
-                <template slot="empty">No results found</template>
-              </b-autocomplete>
-            </b-field>
-          </div>
-          <div class="column">
-            <b-field label="Eligible for EGrantz">
-              <b-switch></b-switch>
-            </b-field>
+          <div class="columns">
+            <div
+              class="column is-flex is-justify-content-center is-align-items-center"
+            >
+              <div class="xbox">
+                <b-button type="is-primary">Save</b-button>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="columns">
-          <div
-            class="column is-flex is-justify-content-center is-align-items-center"
-          >
-            <div class="xbox">
-              <b-button type="is-primary">Save</b-button>
+        <div v-if="user.user.role == 'user'">
+          <div class="columns">
+            <div class="column">
+              <b-field label="Contact Number">
+                <b-input></b-input>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field label="Email">
+                <b-input></b-input>
+              </b-field>
+            </div>
+          </div>
+          <div class="columns is-vcentered">
+            <div class="column">
+              <b-field label="Choose FA Name">
+                <b-autocomplete
+                  v-model="name"
+                  :data="filteredDataArray"
+                  placeholder="Enter FA name"
+                  @select="(option) => (selected = option)"
+                >
+                  <template slot="empty">No results found</template>
+                </b-autocomplete>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field label="Eligible for EGrantz">
+                <b-switch></b-switch>
+              </b-field>
+            </div>
+          </div>
+          <div class="columns">
+            <div
+              class="column is-flex is-justify-content-center is-align-items-center"
+            >
+              <div class="xbox">
+                <b-button type="is-primary">Save</b-button>
+              </div>
             </div>
           </div>
         </div>
@@ -83,30 +108,25 @@
   </section>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Profile",
   data() {
     return {
-      data: [
-        'PARK',
-        'Jane',
-        'Jone',
-        'Leo',
-        'Tove'
-      ],
-      name: '',
-      selected:null
-    }
+      data: ["PARK", "Jane", "Jone", "Leo", "Tove"],
+      name: "",
+      selected: null,
+    };
   },
   computed: {
-            filteredDataArray() {
-                return this.data.filter((option) => {
-                    return option
-                        .toString()
-                        .toLowerCase()
-                        .indexOf(this.name.toLowerCase()) >= 0
-                })
-            }
-        }
+    ...mapGetters(["user"]),
+    filteredDataArray() {
+      return this.data.filter((option) => {
+        return (
+          option.toString().toLowerCase().indexOf(this.name.toLowerCase()) >= 0
+        );
+      });
+    },
+  },
 };
 </script>
