@@ -7,6 +7,7 @@ import ViewApplication from '../views/ViewApplication.vue'
 import Profile from '../views/Profile.vue'
 import DueUpload from '../views/DueUpload.vue'
 import ListApplications from '../views/ListApplications.vue'
+import EditApplication from '../views/EditApplication.vue'
 import store from '@/store';
 // import authService from '../services/auth.service'
 import { ToastProgrammatic as Toast } from 'buefy'
@@ -27,6 +28,11 @@ const routes = [
     path: '/dashboard',
     component: Dashboard,
     meta: { authorize: ['user'] }
+  },
+  {
+    path: '/application/edit', 
+    component: EditApplication,
+    meta: { authorize: ['user']}
   },
   {
     path: '/due',

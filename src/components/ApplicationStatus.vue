@@ -11,7 +11,7 @@
       <h2 class="subtitle">Application is pending <b>SAC verification</b></h2>
       <div class="is-flex buttons">
         <b-button>View application</b-button>
-        <b-button>Edit application</b-button>
+        <b-button tag="router-link" to="/application/edit">Edit application</b-button>
         <b-button>Print application</b-button>
       </div>
     </div>
