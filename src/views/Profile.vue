@@ -108,7 +108,7 @@
   </section>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Profile",
   data() {
@@ -128,5 +128,11 @@ export default {
       });
     },
   },
+  methods: {
+    ...mapActions(['getFaNamesAction'])
+  },
+  mounted() {
+    this.getFaNamesAction();
+  }
 };
 </script>
