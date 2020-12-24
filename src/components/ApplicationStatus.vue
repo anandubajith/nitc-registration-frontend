@@ -10,9 +10,9 @@
       <h1 class="title">You have submitted application</h1>
       <h2 class="subtitle">Application is pending <b>SAC verification</b></h2>
       <div class="is-flex buttons">
-        <b-button>View application</b-button>
+        <b-button tag="router-link" to="/application">View application</b-button>
         <b-button tag="router-link" to="/application/edit">Edit application</b-button>
-        <b-button>Print application</b-button>
+        <b-button tag="router-link" to="/application">Print application</b-button>
       </div>
     </div>
     <div class="hero-body container" v-if="!hasSubmittedApplication">
