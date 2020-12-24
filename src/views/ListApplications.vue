@@ -3,7 +3,7 @@
     <div class="container">
       <div class="columns">
         <div class="column">
-          <h2 class="title">Pending applications</h2>
+          <h2 class="title">{{greeting}}</h2>
           <hr />
         </div>
       </div>
@@ -65,7 +65,19 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["applications"]),
+    ...mapGetters(["applications", "user"]),
+    greeting() {
+      if ( this.user == null )
+        return 'Pending applications';
+      if ( this.user.user.role === 'fa' )
+        return 'Pending applications for Faculty verificaiton'; 
+      if ( this.user.user.role === 'sac_admin' )
+        return 'Pending applications for Academic verificaiton'; 
+      if ( this.user.user.role === 'academic_admin')
+        return 'Pending applications for Academic verificaiton'; 
+      
+      return 'Pending applications';
+    },
     tableData() {
       if (this.applications == null) {
         return [];
