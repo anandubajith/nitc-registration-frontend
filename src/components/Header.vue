@@ -27,13 +27,6 @@
       </b-navbar-item>
       <b-navbar-item
         tag="router-link"
-        :to="{ path: '/application' }"
-        v-if="user.user.role === 'user'"
-      >
-        Application
-      </b-navbar-item>
-      <b-navbar-item
-        tag="router-link"
         :to="{ path: '/profile' }"
         v-if="user.user.role === 'user' || user.user.role === 'fa'"
       >
