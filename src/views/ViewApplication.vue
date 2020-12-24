@@ -103,24 +103,27 @@
             <hr />
           </div>
         </div>
-        <div class="columns">
-          <div class="column">
+        <div class="columns is-centered">
+          <div class="column is-two-thirds">
             <div class="is-flex mb-2 is-align-items-center">
               <div style="margin-right: 10px; font-size: 1.25rem">
                 DSS Fee payment Entry
               </div>
+              <div style="flex: 1"></div>
               <b-button type="is-primary">Download</b-button>
             </div>
             <div class="is-flex mb-2 is-align-items-center">
               <div style="margin-right: 10px; font-size: 1.25rem">
                 Fee payment receipt
               </div>
+              <div style="flex: 1"></div>
               <b-button type="is-primary">Download</b-button>
             </div>
             <div class="is-flex mb-2 is-align-items-center">
               <div style="margin-right: 10px; font-size: 1.25rem">
                 Document A
               </div>
+              <div style="flex: 1"></div>
               <b-button type="is-primary">Download</b-button>
             </div>
           </div>
