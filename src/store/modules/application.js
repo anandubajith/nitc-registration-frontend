@@ -42,9 +42,19 @@ const actions = {
             commit('setLoading', false);
         }
     },
-    // async updateApplicatoin({ commit, getters }, payload) {
-
-    // },
+    async updateApplicationAction({ commit, getters }, payload) {
+        try {
+            commit('setLoading', true);
+            await applicationService.updateApplication(getters.token, payload);
+        } catch (e) {
+            Toast.open({
+                message: `Error: ${e.message}`,
+                type: 'is-danger'
+            })
+        } finally {
+            commit('setLoading', false);
+        }
+    },
     // async updateApplicationStatus({ commit, getters }, payload) {
 
     // }

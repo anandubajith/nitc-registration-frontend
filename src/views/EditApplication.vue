@@ -193,7 +193,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions([]),
+    ...mapActions(['updateApplicationAction']),
     saveAndNext() {
       // call validate based on step
       this.$buefy.dialog.confirm({
@@ -204,6 +204,7 @@ export default {
             this.activeStep++;
           } else {
             alert("Submit");
+            this.updateApplicationAction(this.application)
           }
         },
       });
