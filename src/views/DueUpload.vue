@@ -3,7 +3,7 @@
     <div class="container">
       <div class="columns">
         <div class="column">
-          <h4 class="is-size-4">Upload dues: Library</h4>
+          <h4 class="title">Upload dues: Library</h4>
           <hr />
         </div>
       </div>
