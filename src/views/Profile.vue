@@ -35,12 +35,12 @@
           <div class="columns">
             <div class="column">
               <b-field label="Contact Number">
-                <b-input></b-input>
+                <b-input v-model="user.user.contactNumber"></b-input>
               </b-field>
             </div>
             <div class="column">
               <b-field label="Email">
-                <b-input></b-input>
+                <b-input v-model="user.user.email"></b-input>
               </b-field>
             </div>
           </div>
