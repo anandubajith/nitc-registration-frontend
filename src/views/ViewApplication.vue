@@ -33,24 +33,24 @@
             <div class="columns">
               <div class="column">
                 <b-field label="Roll Number">
-                  <b-input xv-model="application.owner.username"></b-input>
+                  <b-input disabled v-model="user.user.username"></b-input>
                 </b-field>
                 <b-field label="Name">
-                  <b-input xv-model="application.owner.name"></b-input>
+                  <b-input disabled v-model="user.user.username"></b-input>
                 </b-field>
                 <b-field label="Department">
-                  <b-input xv-model="application.owner.department"></b-input>
+                  <b-input disabled v-model="user.user.department"></b-input>
                 </b-field>
               </div>
               <div class="column">
                 <b-field label="E Grantz">
-                  <b-input></b-input>
+                  <b-input disabled></b-input>
                 </b-field>
                 <b-field label="Base Category">
-                  <b-input xv-model="application.owner.category"></b-input>
+                  <b-input disabled v-model="user.user.category"></b-input>
                 </b-field>
                 <b-field label="Application Category">
-                  <b-input xv-model="application.owner.category"></b-input>
+                  <b-input disabled v-model="user.user.category"></b-input>
                 </b-field>
               </div>
             </div>
@@ -64,28 +64,33 @@
               <div class="column">
                 <b-field label="Mode of payment">
                   <b-input
-                    xv-model="application.payment.modeOfPayment"
+                    disabled
+                    v-model="application.payment.modeOfPayment"
                   ></b-input>
                 </b-field>
                 <b-field label="Bank">
                   <b-input
-                    xv-model="application.payment.modeOfPayment"
+                    disabled
+                    v-model="application.payment.bank"
                   ></b-input>
                 </b-field>
                 <b-field label="Transaction ID">
                   <b-input
-                    xv-model="application.payment.modeOfPayment"
+                    disabled
+                    v-model="application.payment.transactionId"
                   ></b-input>
                 </b-field>
               </div>
               <div class="column">
                 <b-field label="Amount">
                   <b-input
-                    xv-model="application.payment.modeOfPayment"
+                    disabled
+                    v-model="application.payment.amount"
                   ></b-input>
                 </b-field>
                 <b-field label="Payment Date">
                   <b-datepicker
+                    disabled
                     model="selected"
                     placeholder="Click to select..."
                     icon="calendar-today"
@@ -133,12 +138,14 @@
   </section>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Application",
   data() {
-    return {
-      application: {},
-    };
+    return {};
+  },
+  computed: {
+    ...mapGetters(["user", "application"]),
   },
   mounted() {},
 };

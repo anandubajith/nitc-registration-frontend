@@ -3,7 +3,9 @@
     <div class="container">
       <div class="columns">
         <div class="column">
-          <ApplicationStatus :hasSubmittedApplication="true" />
+          <ApplicationStatus
+            :hasSubmittedApplication="hasSubmittedApplication"
+          />
         </div>
       </div>
       <div class="columns">
@@ -28,23 +30,26 @@ export default {
     ApplicationStatus,
   },
   computed: {
-    ...mapGetters(["dues"]),
+    ...mapGetters(["dues", "application"]),
     hostelDue() {
-      if ( this.dues === null)
-        return 0;
+      if (this.dues === null) return 0;
       return this.dues.find((due) => due.type === "hostel").amount;
     },
     libraryDue() {
-      if ( this.dues === null)
-        return 0;
+      if (this.dues === null) return 0;
       return this.dues.find((due) => due.type === "library").amount;
+    },
+    hasSubmittedApplication() {
+      if (this.application == null) return {};
+      return this.application.status === "pending";
     },
   },
   methods: {
-    ...mapActions(["fetchDueAction"]),
+    ...mapActions(["fetchDueAction", "fetchUserApplicationAction"]),
   },
   mounted() {
     this.fetchDueAction();
+    this.fetchUserApplicationAction();
   },
 };
 </script>

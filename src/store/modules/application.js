@@ -1,3 +1,4 @@
+import applicationService from '../../services/application.service';
 
 const state = {
     application: null,
@@ -13,21 +14,19 @@ const getters = {
 }
 const actions = {
     async fetchUserApplicationAction({ commit, getters }) {
-        // get the token
-        // getters.token is the token
-        // do the request
-
-        // set the state
+        applicationService.getApplication(getters.token).then(application => {
+            commit('setApplication', application);
+        });
     },
-    async fetchApplicationsAction({ commit, getters }) {
-        // fetch application
-    },
-    async updateApplicatoin({ commit, getters }, payload) {
+    // async fetchApplicationsAction({ commit, getters }) {
+    //     // fetch application
+    // },
+    // async updateApplicatoin({ commit, getters }, payload) {
 
-    },
-    async updateApplicationStatus({ commit, getters }, payload) {
+    // },
+    // async updateApplicationStatus({ commit, getters }, payload) {
 
-    }
+    // }
 }
 const mutations = {
     setApplication(state, payload) {

@@ -6,6 +6,7 @@ class ApplicationService {
         return axios
             .get(config.apiUrl + 'application', { headers: { 'Authorization': `Bearer ${token}` } })
             .then(response => {
+                console.log(response.data)
                 return response.data;
             });
     }
