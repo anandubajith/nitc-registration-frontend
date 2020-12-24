@@ -1,5 +1,11 @@
 <template>
-  <div class="due hero is-warning">
+  <div
+    :class="{
+      'due hero': true,
+      'is-warning': hostelDue > 0 || libraryDue > 0,
+      'is-success': hostelDue <= 0 && libraryDue <= 0,
+    }"
+  >
     <div v-if="hostelDue > 0 || libraryDue > 0" class="hero-body container">
       <h1 class="title">You have pending dues</h1>
       <h2 class="subtitle">Clear them to proceed with registration</h2>
@@ -25,6 +31,9 @@
           </b-field>
         </div>
       </div>
+    </div>
+    <div class="hero-body container" v-else>
+      <h1 class="title">No pending dues</h1>
     </div>
   </div>
 </template>
