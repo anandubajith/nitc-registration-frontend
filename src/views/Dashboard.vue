@@ -41,7 +41,7 @@ export default {
     },
     hasSubmittedApplication() {
       if (this.application == null) return {};
-      return this.application.status === "pending";
+      return this.application.status !== "pending";
     },
   },
   methods: {
