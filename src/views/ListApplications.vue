@@ -9,7 +9,19 @@
       </div>
       <div class="columns">
         <div class="column">
-          <b-table :data="tableData" :columns="columns" :debounce-search="500">
+          <b-table :data="tableData" :debounce-search="500">
+            <b-table-column
+              v-for="(column, index) in columns"
+              :key="index"
+              :label="column.label"
+              :visible="true"
+              v-slot="props"
+            >
+              {{ props.row[column.field] }}
+            </b-table-column>
+            <b-table-column label="Actions" :visible="true">
+              <b-button type="is-info" size="is-small">View</b-button>
+            </b-table-column>
           </b-table>
         </div>
       </div>
@@ -17,7 +29,7 @@
   </section>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -33,7 +45,7 @@ export default {
         {
           field: "roll_number",
           label: "RollNumber",
-           width: "180",
+          width: "180",
           searchable: true,
           sortable: true,
         },
@@ -53,21 +65,26 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['applications']),
+    ...mapGetters(["applications"]),
     tableData() {
-      if ( this.applications == null ) {
+      if (this.applications == null) {
         return [];
       }
-      return this.applications.map(item => {
-        return { id: item.id, name: item.owner.name, roll_number: item.owner.username, date: item.submission_date}
-      })
-    }
+      return this.applications.map((item) => {
+        return {
+          id: item.id,
+          name: item.owner.name,
+          roll_number: item.owner.username,
+          date: item.submission_date,
+        };
+      });
+    },
   },
   methods: {
-    ...mapActions(['fetchApplicationsAction'])
+    ...mapActions(["fetchApplicationsAction"]),
   },
   mounted() {
     this.fetchApplicationsAction();
-  }
+  },
 };
 </script>
