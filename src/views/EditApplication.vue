@@ -23,7 +23,7 @@
                 </b-field>
               </div>
               <div class="column">
-                <b-field label="E Grantz" >
+                <b-field label="E Grantz">
                   <b-input disabled></b-input>
                 </b-field>
                 <b-field label="Base Category">
@@ -38,9 +38,6 @@
               <div
                 class="column is-flex is-justify-content-space-between is-align-items-center"
               >
-                <b-checkbox
-                  >I have verified the details and they are correct</b-checkbox
-                >
                 <b-button type="is-primary" @click="saveAndNext">
                   Save & Next
                 </b-button>
@@ -60,31 +57,30 @@
               <div class="column">
                 <b-field label="Mode of payment">
                   <b-input
-                    xv-model="application.payment.modeOfPayment"
+                    v-model="application.payment.modeOfPayment"
                   ></b-input>
                 </b-field>
                 <b-field label="Bank">
                   <b-input
-                    xv-model="application.payment.modeOfPayment"
+                    v-model="application.payment.bank"
                   ></b-input>
                 </b-field>
                 <b-field label="Transaction ID">
                   <b-input
-                    xv-model="application.payment.modeOfPayment"
+                    v-model="application.payment.transactionId"
                   ></b-input>
                 </b-field>
               </div>
               <div class="column">
                 <b-field label="Amount">
-                  <b-input
-                    xv-model="application.payment.modeOfPayment"
-                  ></b-input>
+                  <b-input v-model="application.payment.amount"></b-input>
                 </b-field>
                 <b-field label="Payment Date">
                   <b-datepicker
                     model="selected"
                     placeholder="Click to select..."
                     icon="calendar-today"
+                    v-model="application.payment.paymentDate"
                     trap-focus
                   >
                   </b-datepicker>
@@ -95,10 +91,7 @@
               <div
                 class="column is-flex is-justify-content-space-between is-align-items-center"
               >
-                <b-checkbox
-                  >I have verified the details and they are correct</b-checkbox
-                >
-                <b-button type="is-primary" @click="saveAndNext">
+                <b-button type="is-primary" @click="saveAndNext" :disabled="!stage2Valid">
                   Save & Next
                 </b-button>
               </div>
@@ -161,7 +154,6 @@
               <div
                 class="column is-flex is-justify-content-space-between is-align-items-center"
               >
-                <b-checkbox>all done, submit the application</b-checkbox>
                 <b-button type="is-success" @click="saveAndNext">
                   Submit application
                 </b-button>
@@ -174,28 +166,47 @@
   </section>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
       activeStep: 0,
       application: {
         payment: {
-          transactionId: '',
-          amount: '',
+          transactionId: "",
+          amount: "",
           paymentDate: null,
-          bank: '',
-          modeOfPayment:''
-        }
-      }
+          bank: "",
+          modeOfPayment: "",
+        },
+      },
     };
   },
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters(["user"]),
+    stage2Valid() {
+      return this.application.payment.modeOfPayment != null
+                && this.application.payment.amount != null
+                && this.application.payment.bank != null
+                && this.application.payment.paymentDate != null
+                && this.application.payment.transactionId != null;
+    }
   },
   methods: {
+    ...mapActions([]),
     saveAndNext() {
-      this.activeStep++;
+      // call validate based on step
+      this.$buefy.dialog.confirm({
+        title: "Confirm",
+        message: "I confirm that all the above details are correct",
+        onConfirm: () => {
+          if (this.activeStep < 2) {
+            this.activeStep++;
+          } else {
+            alert("Submit");
+          }
+        },
+      });
     },
   },
 };
