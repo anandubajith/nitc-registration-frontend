@@ -77,12 +77,7 @@ export default {
   },
   methods: {
     ...mapActions(["signInAction"]),
-    async handleLogin() {
-      const user = {
-        username: this.username,
-        password: this.password,
-      };
-      await this.signInAction(user);
+    goToHomePage() {
       const { role } = this.user.user;
       if (role == "user") {
         this.$router.replace("dashboard");
@@ -96,7 +91,20 @@ export default {
         this.$router.replace("applications/list");
       }
     },
+    async handleLogin() {
+      const user = {
+        username: this.username,
+        password: this.password,
+      };
+      await this.signInAction(user);
+      this.goToHomePage();
+    },
   },
+  mounted() {
+    if ( this.user != null ) {
+      this.goToHomePage();
+    }
+  }
 };
 </script>
 <style>
