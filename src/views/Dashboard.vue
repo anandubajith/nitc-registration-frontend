@@ -3,12 +3,12 @@
     <div class="container">
       <div class="columns">
         <div class="column">
-          <ApplicationStatus  :hasSubmittedApplication="true"/>
+          <ApplicationStatus :hasSubmittedApplication="true" />
         </div>
       </div>
       <div class="columns">
         <div class="column">
-          <Due :hostelDue="123" :libraryDue="100" />
+          <Due :hostelDue="hostelDue" :libraryDue="libraryDue" />
         </div>
       </div>
     </div>
@@ -21,10 +21,7 @@ import ApplicationStatus from "../components/ApplicationStatus.vue";
 export default {
   name: "Dashboard",
   data() {
-    return {
-      hostelDue: 0,
-      libraryDue: 0,
-    };
+    return {};
   },
   components: {
     Due,
@@ -32,21 +29,22 @@ export default {
   },
   computed: {
     ...mapGetters(["dues"]),
+    hostelDue() {
+      if ( this.dues === null)
+        return 0;
+      return this.dues.find((due) => due.type === "hostel").amount;
+    },
+    libraryDue() {
+      if ( this.dues === null)
+        return 0;
+      return this.dues.find((due) => due.type === "library").amount;
+    },
   },
   methods: {
     ...mapActions(["fetchDueAction"]),
   },
   mounted() {
     this.fetchDueAction();
-    // dueService.getUserDue().then(data => {
-    //   data.forEach(item => {
-    //     if ( item.type === 'hostel') {
-    //       this.hostelDue = item.amount;
-    //     } else {
-    //       this.libraryDue = item.amount;
-    //     }
-    //   })
-    // })
   },
 };
 </script>
