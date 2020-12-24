@@ -1,7 +1,75 @@
 <template>
-    <section class="section">
-        <div class="container">
-            list all applications 
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h2 class="title">Pending applications</h2>
+          <hr />
         </div>
-    </section>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <b-table :data="data" :columns="columns" :debounce-search="500">
+          </b-table>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      columns: [
+        {
+          field: "id",
+          label: "ID",
+          width: "80",
+          numeric: true,
+          searchable: true,
+          sortable: true,
+        },
+        {
+          field: "roll_number",
+          label: "RollNumber",
+           width: "180",
+          searchable: true,
+          sortable: true,
+        },
+        {
+          field: "name",
+          label: "Name",
+          searchable: true,
+        },
+
+        {
+          field: "date",
+          label: "Submission date",
+          centered: true,
+          sortable: true,
+        },
+      ],
+      data: [
+        {
+          id: 1,
+          name: "Anandu B Ajith",
+          roll_number: "B180288CS",
+          date: "25/12/2020",
+        },
+         {
+          id: 123,
+          name: "John Doe",
+          roll_number: "B200288CS",
+          date: "22/12/2020",
+        },
+        {
+          id: 33,
+          name: "Test Doe",
+          roll_number: "B170288CS",
+          date: "19/12/2020",
+        },
+      ],
+    };
+  },
+};
+</script>
