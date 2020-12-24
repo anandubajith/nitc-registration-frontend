@@ -21,7 +21,7 @@
         You have not submitted application, proceed to edit application
       </h2>
       <div class="is-flex buttons">
-        <b-button>Edit application</b-button>
+        <b-button  tag="router-link" to="/application/edit">Edit application</b-button>
       </div>
     </div>
   </div>
