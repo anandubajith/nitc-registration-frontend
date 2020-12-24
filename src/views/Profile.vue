@@ -132,7 +132,7 @@ export default {
     ...mapActions(['getFaNamesAction'])
   },
   mounted() {
-    this.getFaNamesAction();
+    // this.getFaNamesAction();
   }
 };
 </script>

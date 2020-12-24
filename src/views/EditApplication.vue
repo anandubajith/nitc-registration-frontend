@@ -13,24 +13,24 @@
             <div class="columns">
               <div class="column">
                 <b-field label="Roll Number">
-                  <b-input xv-model="application.owner.username"></b-input>
+                  <b-input v-model="user.user.username" disabled></b-input>
                 </b-field>
                 <b-field label="Name">
-                  <b-input xv-model="application.owner.name"></b-input>
+                  <b-input v-model="user.user.name" disabled></b-input>
                 </b-field>
                 <b-field label="Department">
-                  <b-input xv-model="application.owner.department"></b-input>
+                  <b-input v-model="user.user.department" disabled></b-input>
                 </b-field>
               </div>
               <div class="column">
-                <b-field label="E Grantz">
-                  <b-input></b-input>
+                <b-field label="E Grantz" >
+                  <b-input disabled></b-input>
                 </b-field>
                 <b-field label="Base Category">
-                  <b-input xv-model="application.owner.category"></b-input>
+                  <b-input v-model="user.user.category" disabled></b-input>
                 </b-field>
                 <b-field label="Application Category">
-                  <b-input xv-model="application.owner.category"></b-input>
+                  <b-input v-model="user.user.category" disabled></b-input>
                 </b-field>
               </div>
             </div>
@@ -174,11 +174,24 @@
   </section>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
       activeStep: 0,
+      application: {
+        payment: {
+          transactionId: '',
+          amount: '',
+          paymentDate: null,
+          bank: '',
+          modeOfPayment:''
+        }
+      }
     };
+  },
+  computed: {
+    ...mapGetters(['user'])
   },
   methods: {
     saveAndNext() {
