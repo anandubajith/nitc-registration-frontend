@@ -106,24 +106,23 @@
         <div class="columns">
           <div class="column">
             <div class="is-flex mb-2 is-align-items-center">
-              <div style="margin-right:10px;font-size:1.25rem">
+              <div style="margin-right: 10px; font-size: 1.25rem">
                 DSS Fee payment Entry
               </div>
               <b-button type="is-primary">Download</b-button>
             </div>
-             <div class="is-flex  mb-2 is-align-items-center">
-              <div style="margin-right:10px;font-size:1.25rem">
+            <div class="is-flex mb-2 is-align-items-center">
+              <div style="margin-right: 10px; font-size: 1.25rem">
                 Fee payment receipt
               </div>
               <b-button type="is-primary">Download</b-button>
             </div>
-             <div class="is-flex mb-2  is-align-items-center">
-              <div style="margin-right:10px;font-size:1.25rem">
+            <div class="is-flex mb-2 is-align-items-center">
+              <div style="margin-right: 10px; font-size: 1.25rem">
                 Document A
               </div>
               <b-button type="is-primary">Download</b-button>
             </div>
-            
           </div>
         </div>
       </div>
