@@ -3,13 +3,19 @@
     <div class="container">
       <div class="columns">
         <div class="column">
-          <section class="hero is-success">
+          <section
+            :class="{
+              hero: true,
+              'is-success': status !== 'Not submitted',
+              'is-danger': status === 'Not submitted ',
+            }"
+          >
             <div class="hero-body">
               <div class="container">
                 <div class="columns">
                   <div class="column">
                     <h1 class="is-size-4">
-                      Status: <b>Submitted for SAC Verification</b>
+                      Status: <b>{{ status }}</b>
                     </h1>
                   </div>
                   <div class="column is-narrow-desktop">
@@ -146,6 +152,16 @@ export default {
   },
   computed: {
     ...mapGetters(["user", "application"]),
+    status() {
+      if (this.application == null) return "Not submitted";
+      if (this.application.status === "pending_sac")
+        return "Submitted for SAC Verification";
+      if (this.application.status === "pending_fa")
+        return "Submitted for Faculty Verification";
+      if (this.application.status === "pending_academic")
+        return "Submitted for Academic Verification";
+      return "Provisionally verified";
+    },
   },
   mounted() {},
 };
