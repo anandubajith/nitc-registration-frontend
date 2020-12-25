@@ -60,6 +60,19 @@ const actions = {
       commit('setLoading', false);
     }
   },
+  async updateDetailsAction({commit, getters}) {
+    try {
+      commit('setLoading', true);
+      // fetch and update user only
+    } catch (e) {
+      Toast.open({
+        message: `Error: ${e.message}`,
+        type: 'is-danger'
+      })
+    } finally {
+      commit('setLoading', false);
+    }
+  },
   signOutAction({ commit }) {
     try {
       commit('setUser', null)

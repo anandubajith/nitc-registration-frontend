@@ -48,7 +48,7 @@
             <div class="column">
               <b-field label="Choose FA Name">
                 <b-autocomplete
-                  v-model="name"
+                  v-model="user.user.faName"
                   :data="filteredDataArray"
                   placeholder="Enter FA name"
                   @select="(option) => (selected = option)"
@@ -59,7 +59,7 @@
             </div>
             <div class="column">
               <b-field label="Eligible for EGrantz">
-                <b-switch></b-switch>
+                <b-switch v-model="user.user.egrantz"></b-switch>
               </b-field>
             </div>
           </div>
