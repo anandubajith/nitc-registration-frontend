@@ -37,7 +37,7 @@
                     class="column buttons is-flex is-justify-content-flex-end is-align-items-end"
                   >
                     <b-button type="is-success" @click="accept"
-                      >Veirfy application</b-button
+                      >Verify application</b-button
                     >
                     <b-button type="is-danger" @click="reject"
                       >Reject application</b-button
