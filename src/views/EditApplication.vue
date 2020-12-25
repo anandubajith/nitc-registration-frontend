@@ -198,7 +198,7 @@ export default {
       // call validate based on step
       this.$buefy.dialog.confirm({
         title: "Confirm",
-        message: "I confirm that all the above details are correct",
+        message: "I hereby confirm that all the above details are correct to the best of my knowledge",
         onConfirm: () => {
           if (this.activeStep < 2) {
             this.activeStep++;
