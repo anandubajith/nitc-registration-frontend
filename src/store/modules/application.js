@@ -70,6 +70,20 @@ const actions = {
         } finally {
             commit('setLoading', false);
         }
+    },
+    async fetchApplicationByIdAction({ commit, getters }, payload) {
+        try {
+            commit('setLoading', true);
+            const application = await applicationService.getApplicationById(getters.token, payload);
+            commit('setApplication', application);
+        } catch (e) {
+            Toast.open({
+                message: `Error: ${e.message}`,
+                type: 'is-danger'
+            })
+        } finally {
+            commit('setLoading', false);
+        }
     }
 }
 const mutations = {

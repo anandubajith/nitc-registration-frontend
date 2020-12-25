@@ -19,8 +19,8 @@
             >
               {{ props.row[column.field] }}
             </b-table-column>
-            <b-table-column label="Actions" :visible="true">
-              <b-button type="is-info" size="is-small">View</b-button>
+            <b-table-column label="Actions" :visible="true" v-slot="props">
+              <b-button type="is-info" size="is-small" @click="viewApplication(props.row.id)">View</b-button>
             </b-table-column>
           </b-table>
         </div>
@@ -93,7 +93,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["fetchApplicationsAction"]),
+    ...mapActions(["fetchApplicationsAction","fetchApplicationByIdAction"]),
+    viewApplication(id) {
+      this.fetchApplicationByIdAction(id).then(() => {
+        this.$router.push('/application')
+      })
+    }
   },
   mounted() {
     this.fetchApplicationsAction();

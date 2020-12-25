@@ -9,6 +9,7 @@
               'is-success': status !== 'Not submitted',
               'is-danger': status === 'Not submitted ',
             }"
+            v-if="user.user.role === 'user'"
           >
             <div class="hero-body">
               <div class="container">
@@ -20,6 +21,21 @@
                   </div>
                   <div class="column is-narrow-desktop">
                     <b-button type="is-info">Print application</b-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="hero is-info" v-else>
+            <div class="hero-body">
+              <div class="container">
+                <div class="columns">
+                  <div class="column">
+                    <h4 class="is-size-4">Actions</h4>
+                  </div>
+                  <div class="column buttons is-flex is-justify-content-flex-end is-align-items-end">
+                    <b-button type="is-success">Veirfy application</b-button>
+                    <b-button type="is-danger">Reject application</b-button>
                   </div>
                 </div>
               </div>
@@ -39,13 +55,22 @@
             <div class="columns">
               <div class="column">
                 <b-field label="Roll Number">
-                  <b-input disabled v-model="user.user.username"></b-input>
+                  <b-input
+                    disabled
+                    v-model="application.owner.username"
+                  ></b-input>
                 </b-field>
                 <b-field label="Name">
-                  <b-input disabled v-model="user.user.username"></b-input>
+                  <b-input
+                    disabled
+                    v-model="application.owner.username"
+                  ></b-input>
                 </b-field>
                 <b-field label="Department">
-                  <b-input disabled v-model="user.user.department"></b-input>
+                  <b-input
+                    disabled
+                    v-model="application.owner.department"
+                  ></b-input>
                 </b-field>
               </div>
               <div class="column">
@@ -53,10 +78,16 @@
                   <b-input disabled></b-input>
                 </b-field>
                 <b-field label="Base Category">
-                  <b-input disabled v-model="user.user.category"></b-input>
+                  <b-input
+                    disabled
+                    v-model="application.owner.category"
+                  ></b-input>
                 </b-field>
                 <b-field label="Application Category">
-                  <b-input disabled v-model="user.user.category"></b-input>
+                  <b-input
+                    disabled
+                    v-model="application.owner.category"
+                  ></b-input>
                 </b-field>
               </div>
             </div>

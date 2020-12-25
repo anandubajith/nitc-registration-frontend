@@ -47,7 +47,7 @@ const routes = [
   {
     path: '/application',
     component: ViewApplication,
-    meta: { authorize: ['user', 'sac', 'faculty', 'academic'] }
+    meta: { authorize: ['user', 'sac_admin', 'fa', 'academic_admin'] }
   },
   { path: '*', redirect: '/' }
 ]
