@@ -18,6 +18,9 @@ const getters = {
     if (state.user && state.user.user.role)
       return state.user.user.role;
     return null;
+  },
+  faNames(state) {
+    return state.faNames;
   }
 };
 const actions = {
@@ -42,8 +45,8 @@ const actions = {
   async getFaNamesAction({ commit, getters }) {
     try {
       commit('setLoading', true);
-      const { data } = await authService.getFaNames(getters.token);
-      commit('setFaNames', data);
+      const res = await authService.getFaNames(getters.token);
+      commit('setFaNames', res);
       Toast.open({
         message: `Welcome `,
         type: 'is-success'

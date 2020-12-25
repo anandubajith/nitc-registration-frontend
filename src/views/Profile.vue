@@ -113,15 +113,14 @@ export default {
   name: "Profile",
   data() {
     return {
-      data: ["PARK", "Jane", "Jone", "Leo", "Tove"],
       name: "",
       selected: null,
     };
   },
   computed: {
-    ...mapGetters(["user"]),
+    ...mapGetters(["user","faNames"]),
     filteredDataArray() {
-      return this.data.filter((option) => {
+      return this.faNames.filter((option) => {
         return (
           option.toString().toLowerCase().indexOf(this.name.toLowerCase()) >= 0
         );
@@ -132,7 +131,7 @@ export default {
     ...mapActions(['getFaNamesAction'])
   },
   mounted() {
-    // this.getFaNamesAction();
+    this.getFaNamesAction();
   }
 };
 </script>

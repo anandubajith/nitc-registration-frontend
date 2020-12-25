@@ -13,7 +13,7 @@ class AuthService {
   }
 
   getFaNames(token) {
-    return axios.post(config.apiUrl + 'users/fa-names', { headers: { 'Authorization': `Bearer ${token}` } })
+    return axios.get(config.apiUrl + 'users/fa-names', { headers: { 'Authorization': `Bearer ${token}` } })
       .then(response => {
         return response.data;
       });
