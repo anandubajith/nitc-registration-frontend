@@ -30,7 +30,7 @@ export default {
     ApplicationStatus,
   },
   computed: {
-    ...mapGetters(["dues", "application"]),
+    ...mapGetters(["user", "dues", "application"]),
     hostelDue() {
       if (this.dues === null) return 0;
       return this.dues.find((due) => due.type === "hostel").amount;
@@ -44,12 +44,21 @@ export default {
       return this.application.status !== "pending";
     },
   },
+
   methods: {
     ...mapActions(["fetchDueAction", "fetchUserApplicationAction"]),
   },
   mounted() {
+    if ( this.user && this.user.user && this.user.user.profileUpdated != true ) {
+      this.$buefy.toast.open({
+        message: 'Update profile to continue', 
+        type: 'is-info'
+      })
+      this.$router.push('profile')
+    }
     this.fetchDueAction();
     this.fetchUserApplicationAction();
+
   },
 };
 </script>
