@@ -28,6 +28,14 @@ class ApplicationService {
             });
     }
 
+    getApplicationById(token, applicationId) {
+        return axios
+            .get(config.apiUrl + 'application', { params: { id: applicationId }, headers: { 'Authorization': `Bearer ${token}` } })
+            .then(response => {
+                return response.data
+            })
+    }
+
     verifyApplication(token, applicationId, remark) {
         return axios
             .put(config.apiUrl + 'application/status', { remark }, { params: { id: applicationId }, headers: { 'Authorization': `Bearer ${token}` } })
