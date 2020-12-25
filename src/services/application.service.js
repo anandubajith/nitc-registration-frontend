@@ -13,7 +13,7 @@ class ApplicationService {
 
     updateApplication(token, application) {
         return axios
-            .put(config.apiUrl + 'application', { data: application,  headers: { 'Authorization': `Bearer ${token}` } })
+            .put(config.apiUrl + 'application',{...application}, { headers: { 'Authorization': `Bearer ${token}` } })
             .then(response => {
                 return response.data;
             });

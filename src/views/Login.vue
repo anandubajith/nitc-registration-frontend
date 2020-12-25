@@ -68,8 +68,8 @@ export default {
   name: "login",
   data() {
     return {
-      username: "",
-      password: "",
+      username: "B180288CS",
+      password: "password",
     };
   },
   computed: {
