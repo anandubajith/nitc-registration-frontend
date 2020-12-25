@@ -33,9 +33,15 @@
                   <div class="column">
                     <h4 class="is-size-4">Actions</h4>
                   </div>
-                  <div class="column buttons is-flex is-justify-content-flex-end is-align-items-end">
-                    <b-button type="is-success">Veirfy application</b-button>
-                    <b-button type="is-danger">Reject application</b-button>
+                  <div
+                    class="column buttons is-flex is-justify-content-flex-end is-align-items-end"
+                  >
+                    <b-button type="is-success" @click="accept"
+                      >Veirfy application</b-button
+                    >
+                    <b-button type="is-danger" @click="reject"
+                      >Reject application</b-button
+                    >
                   </div>
                 </div>
               </div>
@@ -175,11 +181,13 @@
   </section>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Application",
   data() {
-    return {};
+    return {
+      remark: "",
+    };
   },
   computed: {
     ...mapGetters(["user", "application"]),
@@ -192,6 +200,27 @@ export default {
       if (this.application.status === "pending_academic")
         return "Submitted for Academic Verification";
       return "Provisionally verified";
+    },
+  },
+  methods: {
+    ...mapActions(["verifyApplicationAction"]),
+    accept() {
+      this.verifyApplicationAction({
+        applicationId: this.application.id,
+        remark: "accepted",
+      });
+    },
+    reject() {
+      this.$buefy.dialog.prompt({
+        message: `Reason for rejection? `,
+        trapFocus: true,
+        onConfirm: (remark) => {
+          this.verifyApplicationAction({
+            applicationId: this.application.id,
+            remark,
+          });
+        },
+      });
     },
   },
   mounted() {},

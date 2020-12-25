@@ -38,7 +38,7 @@ class ApplicationService {
 
     verifyApplication(token, applicationId, remark) {
         return axios
-            .put(config.apiUrl + 'application/status', { remark }, { params: { id: applicationId }, headers: { 'Authorization': `Bearer ${token}` } })
+            .put(config.apiUrl + 'application/status', { remark }, { params: { id: applicationId , status: remark}, headers: { 'Authorization': `Bearer ${token}` } })
             .then(response => {
                 return response.data;
             });
