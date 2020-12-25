@@ -203,7 +203,6 @@ export default {
           if (this.activeStep < 2) {
             this.activeStep++;
           } else {
-            alert("Submit");
             this.updateApplicationAction(this.application)
           }
         },
