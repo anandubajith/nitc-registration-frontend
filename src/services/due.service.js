@@ -10,7 +10,7 @@ class DueService {
             });
     }
 
-    uploadDue(token, data) {
+    updateDue(token, data) {
         return axios
             .post(config.apiUrl + 'due', data, { headers: { 'Authorization': `Bearer ${token}` } })
             .then(response => {

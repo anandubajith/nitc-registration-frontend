@@ -12,7 +12,7 @@
           <div class="box" style="height: 100%">
             <h4 class="is-size-5">Update individual due</h4>
             <hr />
-            <form action="" @submit.prevent="updateDue">
+            <form action="" @submit.prevent="updateDue()">
               <b-field label="RollNumber">
                 <b-input v-model="rollNumber"></b-input>
               </b-field>
@@ -22,7 +22,7 @@
               <div
                 class="field is-flex is-justify-content-center is-align-items-center"
               >
-                <button class="button is-success">Update</button>
+                <button class="button is-success" :disabled="rollNumber == '' || amount =='' ">Update</button>
               </div>
             </form>
           </div>
@@ -81,6 +81,9 @@ export default {
       this.updateDueAction({
         amount: this.amount,
         rollNumber: this.rollNumber
+      }).then(() => {
+        this.rollNumber = ''
+        this.amount = ''
       })
     }
   }
