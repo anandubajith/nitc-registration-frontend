@@ -45,7 +45,8 @@ const actions = {
     async updateApplicationAction({ commit, getters }, payload) {
         try {
             commit('setLoading', true);
-            await applicationService.updateApplication(getters.token, payload);
+            const updated = await applicationService.updateApplication(getters.token, payload);
+            commit('setApplication', updated);
         } catch (e) {
             Toast.open({
                 message: `Error: ${e.message}`,
