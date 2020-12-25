@@ -11,9 +11,13 @@ class DueService {
     }
 
     uploadDue(token, data) {
-        console.log('todo', data, token);
+        return axios
+            .post(config.apiUrl + 'due', data, { headers: { 'Authorization': `Bearer ${token}` } })
+            .then(response => {
+                return response.data;
+            });
     }
-  
+
 }
 
 export default new DueService();

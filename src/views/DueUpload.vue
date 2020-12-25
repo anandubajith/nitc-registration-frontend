@@ -12,12 +12,12 @@
           <div class="box" style="height: 100%">
             <h4 class="is-size-5">Update individual due</h4>
             <hr />
-            <form action="">
+            <form action="" @submit.prevent="updateDue">
               <b-field label="RollNumber">
-                <b-input></b-input>
+                <b-input v-model="rollNumber"></b-input>
               </b-field>
               <b-field label="Amount">
-                <b-input></b-input>
+                <b-input v-model="amount"></b-input>
               </b-field>
               <div
                 class="field is-flex is-justify-content-center is-align-items-center"
@@ -57,8 +57,14 @@
   </section>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
+  data() {
+    return {
+      amount: '',
+      rollNumber:''
+    }
+  },
   computed: {
     ...mapGetters(["user"]),
     heading() {
@@ -69,6 +75,15 @@ export default {
       return '';
     },
   },
+  methods: {
+    ...mapActions(['updateDueAction']),
+    updateDue() {
+      this.updateDueAction({
+        amount: this.amount,
+        rollNumber: this.rollNumber
+      })
+    }
+  }
 };
 </script>
 <style scoped>

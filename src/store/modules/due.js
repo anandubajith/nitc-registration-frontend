@@ -23,6 +23,20 @@ const actions = {
         } finally {
             commit('setLoading', false);
         }
+    },
+    async updateDueAction({commit, getters}, payload) {
+        try {
+            commit('setLoading', true);
+            await dueService.updateDue(getters.token, payload);
+            // todo: splice and update
+        } catch (e) {
+            Toast.open({
+                message: `Error: ${e.message}`,
+                type: 'is-danger'
+            })
+        } finally {
+            commit('setLoading', false);
+        }
     }
 }
 const mutations = {
