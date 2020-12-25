@@ -71,7 +71,7 @@ router.beforeEach((to, from, next) => {
         message: 'User not logged in',
         type: 'is-danger'
       });
-      return next({ path: '/login', query: { returnUrl: to.path } });
+      return next({ path: '/login' });
     } else if (!authorize.includes(store.getters.role)) {
       // redirect to login
       Toast.open({

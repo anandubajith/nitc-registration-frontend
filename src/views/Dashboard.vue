@@ -49,16 +49,15 @@ export default {
     ...mapActions(["fetchDueAction", "fetchUserApplicationAction"]),
   },
   mounted() {
-    if ( this.user && this.user.user && this.user.user.profileUpdated != true ) {
+    if (this.user && this.user.user && this.user.user.profileUpdated != true) {
       this.$buefy.toast.open({
-        message: 'Update profile to continue', 
-        type: 'is-info'
-      })
-      this.$router.push('profile')
+        message: "Update profile to continue",
+        type: "is-info",
+      });
+      this.$router.push("profile");
     }
     this.fetchDueAction();
     this.fetchUserApplicationAction();
-
   },
 };
 </script>

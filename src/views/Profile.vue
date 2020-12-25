@@ -26,7 +26,7 @@
               class="column is-flex is-justify-content-center is-align-items-center"
             >
               <div class="xbox">
-                <b-button type="is-primary">Save</b-button>
+                <b-button type="is-primary" @click="saveProfile">Save</b-button>
               </div>
             </div>
           </div>
@@ -68,7 +68,7 @@
               class="column is-flex is-justify-content-center is-align-items-center"
             >
               <div class="xbox">
-                <b-button type="is-primary">Save</b-button>
+                <b-button type="is-primary" @click="saveProfile">Save</b-button>
               </div>
             </div>
           </div>
@@ -113,8 +113,15 @@ export default {
   name: "Profile",
   data() {
     return {
-      name: "",
       selected: null,
+      currentPassword: '',
+      newPassword:'',
+      name: '',
+      contactNumber:'',
+      email: '',
+      category: '',
+      faName:'',
+      egrantz: false, 
     };
   },
   computed: {
@@ -128,7 +135,10 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['getFaNamesAction'])
+    ...mapActions(['getFaNamesAction', "updateDetailsAction"]),
+    saveProfile() {
+      this.updateDetailsAction(this.user.user);
+    }
   },
   mounted() {
     this.getFaNamesAction();

@@ -63,11 +63,16 @@ const actions = {
   async updateDetailsAction({ commit, getters }, payload) {
     try {
       commit('setLoading', true);
-      const updated = authService.updateProfile(getters.token, payload);
+      const updated = await authService.updateProfile(getters.token, payload);
       const data = getters.user;
-      data.user = { ...data.user, updated };
+      data.user = { ...data.user, ...updated };
+      console.log(data.user);
       // fetch and update user only
       commit('setUser', data);
+      Toast.open({
+        message: 'Profile details updated',
+        type: 'is-success'
+      })
     } catch (e) {
       Toast.open({
         message: `Error: ${e.message}`,
