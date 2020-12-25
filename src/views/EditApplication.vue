@@ -23,14 +23,14 @@
                 </b-field>
               </div>
               <div class="column">
-                <b-field label="E Grantz">
-                  <b-input disabled></b-input>
-                </b-field>
                 <b-field label="Base Category">
                   <b-input v-model="user.user.category" disabled></b-input>
                 </b-field>
                 <b-field label="Application Category">
                   <b-input v-model="user.user.category" disabled></b-input>
+                </b-field>
+                <b-field label="E Grantz">
+                  <b-switch disabled v-model="user.user.egrantz">Eligible for E-Grantz</b-switch>
                 </b-field>
               </div>
             </div>
