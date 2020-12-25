@@ -56,9 +56,21 @@ const actions = {
             commit('setLoading', false);
         }
     },
-    // async updateApplicationStatus({ commit, getters }, payload) {
-
-    // }
+    async verifyApplicationAction({ commit, getters }, payload) {
+        try {
+            commit('setLoading', true);
+            const updated = await applicationService.verifyApplication(getters.token, payload.applicationId, payload.remark);
+            console.log(updated)
+            // TODO: splice and update
+        } catch (e) {
+            Toast.open({
+                message: `Error: ${e.message}`,
+                type: 'is-danger'
+            })
+        } finally {
+            commit('setLoading', false);
+        }
+    }
 }
 const mutations = {
     setApplication(state, payload) {
