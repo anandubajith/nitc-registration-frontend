@@ -60,10 +60,14 @@ const actions = {
       commit('setLoading', false);
     }
   },
-  async updateDetailsAction({commit, getters}) {
+  async updateDetailsAction({ commit, getters }, payload) {
     try {
       commit('setLoading', true);
+      const updated = authService.updateProfile(getters.token, payload);
+      const data = getters.user;
+      data.user = { ...data.user, updated };
       // fetch and update user only
+      commit('setUser', data);
     } catch (e) {
       Toast.open({
         message: `Error: ${e.message}`,
@@ -90,7 +94,7 @@ const mutations = {
   setUser(state, payload) {
     state.user = payload;
   },
-  setFaNames( state, payload) {
+  setFaNames(state, payload) {
     state.faNames = payload;
   }
 };

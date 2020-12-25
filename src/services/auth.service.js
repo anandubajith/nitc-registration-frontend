@@ -18,6 +18,13 @@ class AuthService {
         return response.data;
       });
   }
+
+  updateProfile(token, data) {
+    return axios.post(config.apiUrl + 'users/me', data, { headers: { 'Authorization': `Bearer ${token}` } })
+      .then(response => {
+        return response.data
+      })
+  }
 }
 
 export default new AuthService();
