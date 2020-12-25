@@ -72,7 +72,7 @@ export default {
       if ( this.user.user.role === 'fa' )
         return 'Pending applications for Faculty verificaiton'; 
       if ( this.user.user.role === 'sac_admin' )
-        return 'Pending applications for Academic verificaiton'; 
+        return 'Pending applications for SAC verificaiton'; 
       if ( this.user.user.role === 'academic_admin')
         return 'Pending applications for Academic verificaiton'; 
       
