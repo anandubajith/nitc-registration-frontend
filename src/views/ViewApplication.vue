@@ -80,9 +80,6 @@
                 </b-field>
               </div>
               <div class="column">
-                <b-field label="E Grantz">
-                  <b-input disabled></b-input>
-                </b-field>
                 <b-field label="Base Category">
                   <b-input
                     disabled
@@ -94,6 +91,9 @@
                     disabled
                     v-model="application.owner.category"
                   ></b-input>
+                </b-field>
+                <b-field label="E Grantz">
+                  <b-switch v-model="application.owner.egrantz" disabled></b-switch>
                 </b-field>
               </div>
             </div>
@@ -134,7 +134,7 @@
                 <b-field label="Payment Date">
                   <b-datepicker
                     disabled
-                    v-model="application.payment.paymentDate"
+                    v-model="dateOfPayment"
                     model="selected"
                     placeholder="Click to select..."
                     icon="calendar-today"
@@ -202,6 +202,13 @@ export default {
         return "Submitted for Academic Verification";
       return "Provisionally verified";
     },
+    dateOfPayment() {
+      if ( this.application === null )
+        return new Date();
+      if ( this.application.payment === null)
+        return new Date();
+      return new Date(this.application.payment.paymentDate);
+    }
   },
   methods: {
     ...mapActions(["verifyApplicationAction"]),
