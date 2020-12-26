@@ -216,7 +216,9 @@ export default {
       this.verifyApplicationAction({
         applicationId: this.application.id,
         remark: "accepted",
-      });
+      }).then(() => {
+        this.$router.push('/');
+      })
     },
     reject() {
       this.$buefy.dialog.prompt({
@@ -226,7 +228,7 @@ export default {
           this.verifyApplicationAction({
             applicationId: this.application.id,
             remark,
-          });
+          }).then(() => {this.$router.push('/');});
         },
       });
     },
