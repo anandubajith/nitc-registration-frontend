@@ -3,7 +3,11 @@
     <div class="container">
       <div class="columns">
         <div class="column">
-          <h2 class="title">{{greeting}}</h2>
+          <div class="is-flex">
+            <h2 class="title">{{ greeting }}</h2>
+            <div style="flex: 1"></div>
+            <b-button icon-left="reload" @click="fetchApplicationsAction">Refresh</b-button>
+          </div>
           <hr />
         </div>
       </div>
@@ -20,7 +24,12 @@
               {{ props.row[column.field] }}
             </b-table-column>
             <b-table-column label="Actions" :visible="true" v-slot="props">
-              <b-button type="is-info" size="is-small" @click="viewApplication(props.row.id)">View</b-button>
+              <b-button
+                type="is-info"
+                size="is-small"
+                @click="viewApplication(props.row.id)"
+                >View</b-button
+              >
             </b-table-column>
           </b-table>
         </div>
@@ -67,16 +76,15 @@ export default {
   computed: {
     ...mapGetters(["applications", "user"]),
     greeting() {
-      if ( this.user == null )
-        return 'Pending applications';
-      if ( this.user.user.role === 'fa' )
-        return 'Pending applications for Faculty verificaiton'; 
-      if ( this.user.user.role === 'sac_admin' )
-        return 'Pending applications for SAC verificaiton'; 
-      if ( this.user.user.role === 'academic_admin')
-        return 'Pending applications for Academic verificaiton'; 
-      
-      return 'Pending applications';
+      if (this.user == null) return "Pending applications";
+      if (this.user.user.role === "fa")
+        return "Pending applications for Faculty verificaiton";
+      if (this.user.user.role === "sac_admin")
+        return "Pending applications for SAC verificaiton";
+      if (this.user.user.role === "academic_admin")
+        return "Pending applications for Academic verificaiton";
+
+      return "Pending applications";
     },
     tableData() {
       if (this.applications == null) {
@@ -93,12 +101,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["fetchApplicationsAction","fetchApplicationByIdAction"]),
+    ...mapActions(["fetchApplicationsAction", "fetchApplicationByIdAction"]),
     viewApplication(id) {
       this.fetchApplicationByIdAction(id).then(() => {
-        this.$router.push('/application')
-      })
-    }
+        this.$router.push("/application");
+      });
+    },
   },
   mounted() {
     this.fetchApplicationsAction();
