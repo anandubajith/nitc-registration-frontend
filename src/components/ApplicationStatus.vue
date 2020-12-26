@@ -26,6 +26,7 @@
           >View application</b-button
         >
         <b-button tag="router-link" to="/application/edit"
+          v-if="!hasSubmittedApplication || application.verificationStatus.remark != 'accepted'"
           >Edit application</b-button
         >
         <b-button tag="router-link" to="/application"
