@@ -169,10 +169,10 @@ export default {
     },
     updatePassword() {
       if (this.password.newPassword !== this.password.newPasswordConfirm) {
-        this.buefy.$toast.open("Passwords must match");
+        this.$buefy.toast.open("Passwords must match");
       }
       this.updatePasswordAction({
-        password: this.password.oldPassword,
+        oldPassword: this.password.oldPassword,
         newPassword: this.password.newPassword,
       });
     },
