@@ -69,7 +69,7 @@
                 <b-field label="Name">
                   <b-input
                     disabled
-                    v-model="application.owner.username"
+                    v-model="application.owner.name"
                   ></b-input>
                 </b-field>
                 <b-field label="Department">
@@ -134,6 +134,7 @@
                 <b-field label="Payment Date">
                   <b-datepicker
                     disabled
+                    v-model="application.payment.paymentDate"
                     model="selected"
                     placeholder="Click to select..."
                     icon="calendar-today"
