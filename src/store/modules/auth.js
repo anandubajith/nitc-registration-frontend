@@ -82,6 +82,23 @@ const actions = {
       commit('setLoading', false);
     }
   },
+  async updatePasswordAction({commit, getters}, payload) {
+    try {
+      commit('setLoading', true);
+      await authService.changePassword(getters.token, payload);
+      Toast.open({
+        message: `Password updated`,
+        type: 'is-success'
+      });
+    } catch (e) {
+      Toast.open({
+        message: `Error: ${e.message}`,
+        type: 'is-danger'
+      })
+    } finally {
+      commit('setLoading', false);
+    }
+  },
   signOutAction({ commit }) {
     try {
       commit('setUser', null)

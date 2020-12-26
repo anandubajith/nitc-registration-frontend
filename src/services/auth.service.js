@@ -25,6 +25,13 @@ class AuthService {
         return response.data
       })
   }
+
+  changePassword(token, data) {
+    return axios.post(config.apiUrl + 'users/update-password', data, { headers: { 'Authorization': `Bearer ${token}` } })
+      .then(response => {
+        return response.data
+      })
+  }
 }
 
 export default new AuthService();

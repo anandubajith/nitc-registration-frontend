@@ -82,17 +82,28 @@
         <div class="columns">
           <div class="column">
             <b-field label="New password">
-              <b-input></b-input>
+              <b-input
+                type="password"
+                v-model="password.newPassword"
+                password-reveal
+              ></b-input>
             </b-field>
           </div>
           <div class="column">
             <b-field label="Confirm password">
-              <b-input></b-input>
+              <b-input
+                type="password"
+                v-model="password.newPasswordConfirm"
+              ></b-input>
             </b-field>
           </div>
           <div class="column">
             <b-field label="Current password">
-              <b-input></b-input>
+              <b-input
+                type="password"
+                v-model="password.oldPassword"
+                password-reveal
+              ></b-input>
             </b-field>
           </div>
         </div>
@@ -100,7 +111,15 @@
           <div
             class="column is-flex is-justify-content-center is-align-items-center"
           >
-            <b-button type="is-primary">Update password</b-button>
+            <b-button
+              type="is-primary"
+              @click="updatePassword"
+              :disabled="
+                this.password.newPassword.length === 0 ||
+                this.password.oldPassword.length === 0
+              "
+              >Update password</b-button
+            >
           </div>
         </div>
       </div>
@@ -114,18 +133,23 @@ export default {
   data() {
     return {
       selected: null,
-      currentPassword: '',
-      newPassword:'',
-      name: '',
-      contactNumber:'',
-      email: '',
-      category: '',
-      faName:'',
-      egrantz: false, 
+      currentPassword: "",
+      newPassword: "",
+      name: "",
+      contactNumber: "",
+      email: "",
+      category: "",
+      faName: "",
+      egrantz: false,
+      password: {
+        newPassword: "",
+        newPasswordConfirm: "",
+        oldPassword: "",
+      },
     };
   },
   computed: {
-    ...mapGetters(["user","faNames"]),
+    ...mapGetters(["user", "faNames"]),
     filteredDataArray() {
       return this.faNames.filter((option) => {
         return (
@@ -135,13 +159,26 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['getFaNamesAction', "updateDetailsAction"]),
+    ...mapActions([
+      "getFaNamesAction",
+      "updateDetailsAction",
+      "updatePasswordAction",
+    ]),
     saveProfile() {
       this.updateDetailsAction(this.user.user);
-    }
+    },
+    updatePassword() {
+      if (this.password.newPassword !== this.password.newPasswordConfirm) {
+        this.buefy.$toast.open("Passwords must match");
+      }
+      this.updatePasswordAction({
+        password: this.password.oldPassword,
+        newPassword: this.password.newPassword,
+      });
+    },
   },
   mounted() {
     this.getFaNamesAction();
-  }
+  },
 };
 </script>
