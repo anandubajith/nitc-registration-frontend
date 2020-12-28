@@ -5,11 +5,11 @@
       'is-info': hasSubmittedApplication,
       'is-danger':
         !hasSubmittedApplication ||
-        application.verificationStatus.remark != 'accepted',
+        (application.verificationStatus.remark != 'pending' && application.verificationStatus.remark != 'accepted'),
     }"
   >
     <div class="hero-body container" v-if="hasSubmittedApplication">
-      <div class="mb-1" v-if="application.verificationStatus.remark != 'accepted'">
+      <div class="mb-1" v-if="application.verificationStatus.remark != 'pending' && application.verificationStatus.remark != 'accepted' ">
         <h1 class="title">Application Rejected</h1>
         <h2 class="subtitle">
           Remark: {{ application.verificationStatus.remark }}
